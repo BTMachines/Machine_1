@@ -1,0 +1,18 @@
+#N canvas 200 285 450 300 10;
+#X obj 18 91 outlet;
+#X msg 18 64 open samples/kick.wav;
+#X obj 18 40 loadbang;
+#X obj 49 155 outlet;
+#X obj 73 210 outlet;
+#X obj 98 267 outlet;
+#X msg 49 128 open samples/hihat.wav;
+#X msg 73 183 open samples/snare.wav;
+#X msg 98 240 open samples/zap.wav;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 2 0 6 0;
+#X connect 2 0 7 0;
+#X connect 2 0 8 0;
+#X connect 6 0 3 0;
+#X connect 7 0 4 0;
+#X connect 8 0 5 0;

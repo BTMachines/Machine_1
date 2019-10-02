@@ -1,0 +1,23 @@
+#N canvas 2 235 351 285 10;
+#X obj 52 94 select 0;
+#X obj 52 118 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 148 70 0;
+#X floatatom 178 144 5 0 0 0 - - -, f 5;
+#X obj 97 133 delay 1;
+#X obj 52 38 inlet;
+#X msg 199 180 set pas;
+#X obj 199 204 send to_osc;
+#X obj 52 70 % 4;
+#X obj 148 101 / 4;
+#X connect 0 0 1 0;
+#X connect 1 0 4 0;
+#X connect 2 0 9 0;
+#X connect 3 0 6 0;
+#X connect 3 0 7 0;
+#X connect 4 0 2 0;
+#X connect 5 0 2 1;
+#X connect 5 0 8 0;
+#X connect 6 0 7 0;
+#X connect 8 0 0 0;
+#X connect 9 0 3 0;

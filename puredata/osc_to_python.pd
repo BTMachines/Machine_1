@@ -1,0 +1,24 @@
+#N canvas 523 227 577 288 10;
+#X text 236 67 creation arguments are OSC address;
+#X msg 45 174 disconnect;
+#X obj 37 201 netsend -u -b;
+#X obj 38 100 list prepend send;
+#X obj 38 125 list trim;
+#X text 140 174 don't send;
+#X msg 46 150 connect localhost 1337;
+#X obj 38 37 inlet;
+#X obj 38 68 oscformat idInstru;
+#X obj 276 133 loadbang;
+#X obj 46 245 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 126 250 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X connect 1 0 2 0;
+#X connect 2 0 10 0;
+#X connect 2 1 11 0;
+#X connect 3 0 4 0;
+#X connect 4 0 2 0;
+#X connect 6 0 2 0;
+#X connect 7 0 8 0;
+#X connect 8 0 3 0;
+#X connect 9 0 6 0;
