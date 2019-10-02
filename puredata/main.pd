@@ -15,6 +15,11 @@
 #X obj 145 402 partition;
 #X obj 145 450 audioplayers;
 #X obj 145 479 mute_box;
+#X obj 91 129 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 91 149 f;
+#X msg 91 172;
+#X floatatom 91 195 5 0 0 0 - - -, f 5;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 2 0 10 0;
@@ -38,9 +43,6 @@
 #X connect 13 3 14 3;
 #X connect 14 0 7 0;
 #X connect 14 0 7 1;
-#X connect 14 1 7 0;
-#X connect 14 1 7 1;
-#X connect 14 2 7 0;
-#X connect 14 2 7 1;
-#X connect 14 3 7 0;
-#X connect 14 3 7 1;
+#X connect 15 0 16 0;
+#X connect 16 0 17 0;
+#X connect 17 0 18 0;
