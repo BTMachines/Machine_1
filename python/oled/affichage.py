@@ -39,11 +39,22 @@ carre_height=(height-marge_top)/4
 carre2_height=(height-marge_top)/3
 
 lastpas=0
+font = ImageFont.load_default()
+
+
+
+def affMainMenu():
+    draw = ImageDraw.Draw(image)
+    draw.rectangle((0,0,width,height), outline=0, fill=0)
+    #font = ImageFont.load_default()
+    draw.text((0,0),"Main Menu",  font=font, fill=255)
+    disp.image(image)
+    disp.display()
 
 def affMenu(idInstru,listMute):
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)
-    font = ImageFont.load_default()
+    #font = ImageFont.load_default()
     draw.text((0,0),"track",  font=font, fill=255)
     draw.text((40,0),str(idInstru),  font=font, fill=255)
     if listMute[idInstru-1]==True:
@@ -75,7 +86,7 @@ def affSeq(idInstru,idPas,pas,listVelo):
 
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)
-    font = ImageFont.load_default()
+    #font = ImageFont.load_default()
     draw.text((0,0),str(round(idInstru)),  font=font, fill=255)
     draw.text((30,0),str(round(idPas)),  font=font, fill=255)
     draw.text((60,0),str(listVelo[idPas]),  font=font, fill=255)

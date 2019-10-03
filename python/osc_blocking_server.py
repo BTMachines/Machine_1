@@ -49,7 +49,7 @@ def clear_velo():
 
 
 def default_handler(address, *args):
-    #print(address,args)
+    print(address,args)
     global lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute
     if(address=="/idMenu"):
         lastIdMenu=round(args[0])
@@ -66,10 +66,12 @@ def default_handler(address, *args):
         tri_mute()
     if(address=="/clear"):
         clear_velo()
-    if lastIdMenu==1:
+    if lastIdMenu==2:
         affSeq(lastIdInstru,lastIdPas,lastPas,list_velos[lastIdInstru-1])
-    if lastIdMenu==0:
+    if lastIdMenu==1:
         affMenu(lastIdInstru,list_mute)
+    if lastIdMenu==0:
+        affMainMenu()
 
 
 dispatcher = Dispatcher()
