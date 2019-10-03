@@ -40,14 +40,27 @@ carre2_height=(height-marge_top)/3
 
 lastpas=0
 font = ImageFont.load_default()
+playTitle="paused"
 
 
 
-def affMainMenu():
+
+def affMainMenu(bpm, play):
+    
+    if play==1:
+        playTitle="Play"
+    elif play==2:
+        playTitle="Stoped"
+    else:
+        playTitle="Paused"
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     #font = ImageFont.load_default()
-    draw.text((0,0),"Main Menu",  font=font, fill=255)
+    draw.text((0,0),playTitle,  font=font, fill=255)
+    draw.text((0,20),"bpm",  font=font, fill=255)
+    draw.text((20,20),str(round(bpm)),  font=font, fill=255)
+
+
     disp.image(image)
     disp.display()
 

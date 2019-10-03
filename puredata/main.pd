@@ -1,26 +1,28 @@
-#N canvas 572 169 416 694 10;
-#X obj 145 205 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#N canvas 506 179 499 619 10;
+#X obj 205 256 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 145 228 seq64;
-#X floatatom 145 254 5 0 0 0 - - -, f 5;
-#X floatatom 177 205 5 0 0 0 - - -, f 5;
-#X obj 238 313 nav;
-#X obj 145 153 loadbang;
-#X msg 211 153 \; pd dsp 1;
-#X obj 145 522 dac~;
-#X obj 145 94 osc_to_python;
-#X obj 145 65 receive to_osc;
-#X obj 228 268 seq_to_osc;
-#X obj 175 352 road_to_part;
-#X obj 145 402 partition;
-#X obj 145 450 audioplayers;
-#X obj 145 479 mute_box;
-#X obj 91 129 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 91 149 f;
-#X msg 91 172;
-#X floatatom 91 195 5 0 0 0 - - -, f 5;
+#X obj 205 279 seq64;
+#X floatatom 205 305 5 0 0 0 - - -, f 5;
+#X floatatom 237 256 5 0 0 0 - - -, f 5;
+#X obj 298 364 nav;
+#X obj 205 174 loadbang;
+#X msg 271 174 \; pd dsp 1;
+#X obj 205 573 dac~;
+#X obj 205 115 osc_to_python;
+#X obj 205 86 receive to_osc;
+#X obj 288 319 seq_to_osc;
+#X obj 235 403 road_to_part;
+#X obj 205 453 partition;
+#X obj 205 501 audioplayers;
+#X obj 205 530 mute_box;
+#X msg 237 228 120;
+#X obj 309 239 receive newBpm;
+#X obj 68 239 receive playPause;
+#X msg 69 271 set playPause;
+#X obj 69 299 send to_osc;
 #X connect 0 0 1 0;
+#X connect 0 0 18 0;
+#X connect 0 0 19 0;
 #X connect 1 0 2 0;
 #X connect 2 0 10 0;
 #X connect 2 0 12 0;
@@ -30,6 +32,7 @@
 #X connect 4 2 11 2;
 #X connect 5 0 0 0;
 #X connect 5 0 6 0;
+#X connect 5 0 15 0;
 #X connect 9 0 8 0;
 #X connect 11 0 12 1;
 #X connect 11 1 12 2;
@@ -43,6 +46,7 @@
 #X connect 13 3 14 3;
 #X connect 14 0 7 0;
 #X connect 14 0 7 1;
-#X connect 15 0 16 0;
-#X connect 16 0 17 0;
-#X connect 17 0 18 0;
+#X connect 15 0 3 0;
+#X connect 16 0 3 0;
+#X connect 17 0 0 0;
+#X connect 18 0 19 0;

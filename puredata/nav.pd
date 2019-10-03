@@ -1,4 +1,4 @@
-#N canvas 21 102 994 766 10;
+#N canvas 349 412 403 297 10;
 #X obj 132 48 this_is_a_masta_key_selector;
 #X obj 132 155 outlet;
 #X obj 151 193 outlet;

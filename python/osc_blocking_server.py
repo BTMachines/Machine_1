@@ -6,6 +6,8 @@ lastIdInstru=1
 lastIdPas=0
 lastPas=0
 lastIdMenu=0
+lastBpm=0
+isPlaying=0
 
 list_velos=[[],[],[],[]]
 list_mute=[]
@@ -50,7 +52,7 @@ def clear_velo():
 
 def default_handler(address, *args):
     print(address,args)
-    global lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute
+    global lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute,lastBpm,isPlaying
     if(address=="/idMenu"):
         lastIdMenu=round(args[0])
     if(address=="/idInstru"):
@@ -66,12 +68,16 @@ def default_handler(address, *args):
         tri_mute()
     if(address=="/clear"):
         clear_velo()
+    if(address=="/BPM"):
+        lastBpm=round(args[0])
+    if(address=="/playPause"):
+        isPlaying=round(args[0])
     if lastIdMenu==2:
         affSeq(lastIdInstru,lastIdPas,lastPas,list_velos[lastIdInstru-1])
     if lastIdMenu==1:
         affMenu(lastIdInstru,list_mute)
     if lastIdMenu==0:
-        affMainMenu()
+        affMainMenu(lastBpm,isPlaying)
 
 
 dispatcher = Dispatcher()
