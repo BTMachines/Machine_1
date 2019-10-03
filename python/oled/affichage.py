@@ -45,10 +45,10 @@ playTitle="paused"
 
 
 
-def affMainMenu(bpm, play):
+def affMainMenu(bpm, play,mesures):
     
     if play==1:
-        playTitle="Play"
+        playTitle="Playing"
     elif play==2:
         playTitle="Stoped"
     else:
@@ -57,8 +57,11 @@ def affMainMenu(bpm, play):
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     #font = ImageFont.load_default()
     draw.text((0,0),playTitle,  font=font, fill=255)
-    draw.text((0,20),"bpm",  font=font, fill=255)
-    draw.text((20,20),str(round(bpm)),  font=font, fill=255)
+    draw.text((0,20),"bpm:",  font=font, fill=255)
+    draw.text((35,20),str(round(bpm)),  font=font, fill=255)
+    draw.text((0,40),"mesures:",  font=font, fill=255)
+    draw.text((50,40),str(round(mesures)),  font=font, fill=255)
+
 
 
     disp.image(image)

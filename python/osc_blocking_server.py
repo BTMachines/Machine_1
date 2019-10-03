@@ -2,12 +2,14 @@ from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import BlockingOSCUDPServer
 from oled.affichage import *
 
+
 lastIdInstru=1
 lastIdPas=0
 lastPas=0
 lastIdMenu=0
 lastBpm=0
 isPlaying=0
+lastNbMesures=0
 
 list_velos=[[],[],[],[]]
 list_mute=[]
@@ -52,7 +54,7 @@ def clear_velo():
 
 def default_handler(address, *args):
     print(address,args)
-    global lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute,lastBpm,isPlaying
+    global lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute,lastBpm,isPlaying,lastNbMesures
     if(address=="/idMenu"):
         lastIdMenu=round(args[0])
     if(address=="/idInstru"):
@@ -72,12 +74,14 @@ def default_handler(address, *args):
         lastBpm=round(args[0])
     if(address=="/playPause"):
         isPlaying=round(args[0])
+    if(address=="/nbMesures"):
+        lastNbMesures=round(args[0])
     if lastIdMenu==2:
         affSeq(lastIdInstru,lastIdPas,lastPas,list_velos[lastIdInstru-1])
     if lastIdMenu==1:
         affMenu(lastIdInstru,list_mute)
     if lastIdMenu==0:
-        affMainMenu(lastBpm,isPlaying)
+        affMainMenu(lastBpm,isPlaying,lastNbMesures)
 
 
 dispatcher = Dispatcher()
