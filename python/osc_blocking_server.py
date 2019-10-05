@@ -10,18 +10,20 @@ lastIdMenu=0
 lastBpm=0
 isPlaying=0
 lastNbMesures=0
+nbPlayers=12
+lastMasterVol=0
 
-list_velos=[[],[],[],[]]
+list_velos=[[],[],[],[],[],[],[],[],[],[],[],[]]
 list_mute=[]
 i=0
-while i<12:
+while i<nbPlayers:
     list_mute.append(False)
     i+=1
 
 
 i=0
 j=0
-while j<4:
+while j<nbPlayers:
     while i<64:
         list_velos[j].append(0)
         i+=1
@@ -54,7 +56,7 @@ def clear_velo():
 
 def default_handler(address, *args):
     print(address,args)
-    global lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute,lastBpm,isPlaying,lastNbMesures
+    global lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute,lastBpm,isPlaying,lastNbMesures,lastMasterVol
     if(address=="/idMenu"):
         lastIdMenu=round(args[0])
     if(address=="/idInstru"):
@@ -76,12 +78,14 @@ def default_handler(address, *args):
         isPlaying=round(args[0])
     if(address=="/nbMesures"):
         lastNbMesures=round(args[0])
+    if(address=="/masterVol"):
+        lastMasterVol=round(args[0]*100)
     if lastIdMenu==2:
         affSeq(lastIdInstru,lastIdPas,lastPas,list_velos[lastIdInstru-1])
     if lastIdMenu==1:
         affMenu(lastIdInstru,list_mute)
     if lastIdMenu==0:
-        affMainMenu(lastBpm,isPlaying,lastNbMesures)
+        affMainMenu(lastBpm,isPlaying,lastNbMesures,lastMasterVol)
 
 
 dispatcher = Dispatcher()
