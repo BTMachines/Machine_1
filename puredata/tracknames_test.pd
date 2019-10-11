@@ -1,0 +1,18 @@
+#N canvas 639 148 693 462 10;
+#X symbolatom 176 272 50 0 0 0 - - -, f 50;
+#X obj 134 195 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 212 193 /home/pi/Bureau/BTMachines_git/samples/;
+#X obj 176 234 trigger;
+#X symbolatom 176 330 50 0 0 0 - - -, f 50;
+#X obj 152 113 list;
+#X obj 152 141 print;
+#X obj 152 85 list append;
+#X msg 120 48 salut les nazes;
+#X msg 120 22 qui suce?;
+#X connect 1 0 3 0;
+#X connect 3 0 0 0;
+#X connect 5 0 6 0;
+#X connect 7 0 5 0;
+#X connect 8 0 7 0;
+#X connect 9 0 7 0;
