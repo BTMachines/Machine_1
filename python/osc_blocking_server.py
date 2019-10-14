@@ -1,5 +1,6 @@
 from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import BlockingOSCUDPServer
+from analyse import *
 from oled.affichage import *
 
 
@@ -80,6 +81,9 @@ def default_handler(address, *args):
         lastNbMesures=round(args[0])
     if(address=="/masterVol"):
         lastMasterVol=round(args[0]*100)
+    if(address=="/ask"):
+        anal();
+        #ici apeller la fonction analyse puis send osc
     if lastIdMenu==2:
         affSeq(lastIdInstru,lastIdPas,lastPas,list_velos[lastIdInstru-1])
     if lastIdMenu==1:
@@ -96,4 +100,3 @@ port = 1337
 
 server = BlockingOSCUDPServer((ip, port), dispatcher)
 server.serve_forever()  # Blocks forever
-
