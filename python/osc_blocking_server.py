@@ -83,7 +83,6 @@ def default_handler(address, *args):
         lastMasterVol=round(args[0]*100)
     if(address=="/ask"):
         anal();
-        #ici apeller la fonction analyse puis send osc
     if lastIdMenu==2:
         affSeq(lastIdInstru,lastIdPas,lastPas,list_velos[lastIdInstru-1])
     if lastIdMenu==1:
