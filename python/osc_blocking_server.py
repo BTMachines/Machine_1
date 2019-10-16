@@ -13,6 +13,7 @@ isPlaying=0
 lastNbMesures=0
 nbPlayers=12
 lastMasterVol=0
+lastKit=0
 
 list_velos=[[],[],[],[],[],[],[],[],[],[],[],[]]
 list_mute=[]
@@ -57,7 +58,7 @@ def clear_velo():
 
 def default_handler(address, *args):
     print(address,args)
-    global lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute,lastBpm,isPlaying,lastNbMesures,lastMasterVol
+    global lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute,lastBpm,isPlaying,lastNbMesures,lastMasterVol, lastKit
     if(address=="/idMenu"):
         lastIdMenu=round(args[0])
     if(address=="/idInstru"):
@@ -81,14 +82,17 @@ def default_handler(address, *args):
         lastNbMesures=round(args[0])
     if(address=="/masterVol"):
         lastMasterVol=round(args[0]*100)
-    if(address=="/ask"):
-        anal(args[0]);
+    if(address=="/askFiles"):
+        lastKit=round(args[0])
+        analFiles(lastKit)
+    if(address=="/askFolders"):
+        analFolders()
     if lastIdMenu==2:
-        affSeq(lastIdInstru,lastIdPas,lastPas,list_velos[lastIdInstru-1])
+        affSeq(lastIdInstru,finalFilesNames[lastIdInstru-1],lastIdPas,lastPas,list_velos[lastIdInstru-1])
     if lastIdMenu==1:
-        affMenu(lastIdInstru,list_mute)
+        affMenu(folders[lastKit],lastIdInstru,list_mute)
     if lastIdMenu==0:
-        affMainMenu(lastBpm,isPlaying,lastNbMesures,lastMasterVol)
+        affMainMenu(lastBpm,isPlaying,lastNbMesures,lastMasterVol,folders[lastKit])
 
 
 dispatcher = Dispatcher()

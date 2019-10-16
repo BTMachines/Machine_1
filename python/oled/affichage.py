@@ -45,7 +45,7 @@ playTitle="paused"
 
 
 
-def affMainMenu(bpm, play,mesures,master):
+def affMainMenu(bpm, play,mesures,master,kitName):
     
     if play==1:
         playTitle="Playing"
@@ -57,24 +57,25 @@ def affMainMenu(bpm, play,mesures,master):
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     #font = ImageFont.load_default()
     draw.text((0,0),playTitle,  font=font, fill=255)
-    draw.text((0,15),"bpm:",  font=font, fill=255)
-    draw.text((35,15),str(round(bpm)),  font=font, fill=255)
-    draw.text((0,30),"mesures:",  font=font, fill=255)
-    draw.text((50,30),str(round(mesures)),  font=font, fill=255)
-    draw.text((0,45),"master:",  font=font, fill=255)
-    draw.text((45,45),(str(master)),  font=font, fill=255)
-    draw.text((65,45),"%",  font=font, fill=255)
-
+    draw.text((0,10),"bpm:",  font=font, fill=255)
+    draw.text((35,10),str(round(bpm)),  font=font, fill=255)
+    draw.text((0,20),"mesures:",  font=font, fill=255)
+    draw.text((50,20),str(round(mesures)),  font=font, fill=255)
+    draw.text((0,30),"master:",  font=font, fill=255)
+    draw.text((45,30),(str(master)),  font=font, fill=255)
+    draw.text((65,30),"%",  font=font, fill=255)
+    draw.text((0,40),"kit:",  font=font, fill=255)
+    draw.text((35,40),(kitName),  font=font, fill=255)
 
     disp.image(image)
     disp.display()
 
-def affMenu(idInstru,listMute):
+def affMenu(kitName,idInstru,listMute):
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     #font = ImageFont.load_default()
-    draw.text((0,0),"track",  font=font, fill=255)
-    draw.text((40,0),str(idInstru),  font=font, fill=255)
+    draw.text((0,0),kitName,  font=font, fill=255)
+    #draw.text((40,0),str(idInstru),  font=font, fill=255)
     if listMute[idInstru-1]==True:
         draw.text((70,0),"mute",  font=font, fill=255)
     
@@ -99,15 +100,16 @@ def affMenu(idInstru,listMute):
     disp.image(image)
     disp.display()
 
-def affSeq(idInstru,idPas,pas,listVelo):
+def affSeq(idInstru,nameInstru,idPas,pas,listVelo):
 
 
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     #font = ImageFont.load_default()
-    draw.text((0,0),str(round(idInstru)),  font=font, fill=255)
-    draw.text((30,0),str(round(idPas)),  font=font, fill=255)
-    draw.text((60,0),str(listVelo[idPas]),  font=font, fill=255)
+    draw.text((0,0),str(idInstru),  font=font, fill=255)
+    draw.text((15,0),nameInstru,  font=font, fill=255)
+    #draw.text((30,0),str(round(idPas)),  font=font, fill=255)
+    draw.text((100,0),str(listVelo[idPas]),  font=font, fill=255)
     #draw.text((20,0),str(round(idPas)),  font=font, fill=255)
     idPas=round(idPas);
     #print("idpas : ",idPas)

@@ -4,33 +4,44 @@ from list_repository import *
 
 client = udp_client.UDPClient('localhost', 12000)
 
-def anal(name):
-    line=listRepo(name)
+folders=listRepo();
+finalFilesNames=[];
+
+i=0
+while i<12:
+    finalFilesNames.append("x")
+    i+=1
+
+#print(folders)
+
+def analFolders():
+    addr="/folderLength"
+    msg = osc_message_builder.OscMessageBuilder(address=addr)
+    msg.add_arg(len(folders))
+    print("lenFold:",len(folders))
+    msg = msg.build()
+    client.send(msg)
+
+
+def analFiles(idFolder):
+    name=folders[round(idFolder)]
+    filesNames=listFiles(name)
     i=0
-    myNum=0
     print("name:",name)
 
-    while i<len(line):
+    while i<len(filesNames):
         
-        nombre=True
-        try:
-            float(line[i][1])>=0
-        except ValueError:
-            nombre=False
-        
-        if nombre==True:    
-            myNum=int(line[i][:2])
-        else:
-            myNum=int(line[i][0])
-                
-        #print(myNum)
-
-        numId= line[myNum-1].split("_")
+        analyse= filesNames[i].split("_")
+        numId=int(analyse[0])
+        print("numid:",numId," name:",analyse[1])
+        nakedName=analyse[1].split(".")
+        finalFilesNames[numId-1]=nakedName[0]
         addr="/fileName"
         msg = osc_message_builder.OscMessageBuilder(address=addr)
-        msg.add_arg(int(numId[0]))
+        msg.add_arg(numId)
         msg.add_arg("open")
-        msg.add_arg("/home/pi/Bureau/BTMachines_git/Samples/"+name+"/"+line[myNum-1])
+        msg.add_arg("/home/pi/Bureau/BTMachines_git/Samples/"+name+"/"+filesNames[i])
         msg = msg.build()
         client.send(msg)
         i+=1
+    print("final:",finalFilesNames)
