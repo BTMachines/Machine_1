@@ -1,4 +1,4 @@
-#N canvas 523 227 577 288 10;
+#N canvas 521 227 577 288 10;
 #X text 236 67 creation arguments are OSC address;
 #X msg 45 174 disconnect;
 #X obj 37 201 netsend -u -b;

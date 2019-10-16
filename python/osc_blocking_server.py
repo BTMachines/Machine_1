@@ -82,7 +82,7 @@ def default_handler(address, *args):
     if(address=="/masterVol"):
         lastMasterVol=round(args[0]*100)
     if(address=="/ask"):
-        anal();
+        anal(args[0]);
     if lastIdMenu==2:
         affSeq(lastIdInstru,lastIdPas,lastPas,list_velos[lastIdInstru-1])
     if lastIdMenu==1:

@@ -1,4 +1,4 @@
-#N canvas -42 73 625 359 10;
+#N canvas 2 73 1289 359 10;
 #X obj 17 144 audioplayer;
 #X obj 104 144 audioplayer;
 #X obj 192 144 audioplayer;
@@ -36,7 +36,7 @@
 #X obj 980 108 inlet;
 #X obj 894 269 outlet~;
 #X obj 981 269 outlet~;
-#X obj 1070 127 track_toju, f 23;
+#X obj 1089 127 track_names, f 23;
 #X connect 0 0 6 0;
 #X connect 0 1 6 0;
 #X connect 1 0 7 0;
