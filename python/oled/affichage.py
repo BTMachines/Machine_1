@@ -69,6 +69,15 @@ def affMainMenu(bpm, play,mesures,master,kitName):
 
     disp.image(image)
     disp.display()
+    
+def affRackMenu(rackId):
+    
+    draw = ImageDraw.Draw(image)
+    draw.rectangle((0,0,width,height), outline=0, fill=0)   
+    draw.text((0,40),"rackMenu"+str(rackId),  font=font, fill=255)
+    disp.image(image)
+    disp.display()
+    
 
 def affMenu(kitName,idInstru,listMute):
     draw = ImageDraw.Draw(image)

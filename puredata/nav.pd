@@ -1,4 +1,4 @@
-#N canvas 187 205 483 301 10;
+#N canvas 186 205 574 395 10;
 #X obj 132 48 this_is_a_masta_key_selector;
 #X obj 132 155 outlet;
 #X obj 151 193 outlet;
@@ -10,9 +10,13 @@
 #X text 207 116 mode ecriture des tracks;
 #X text 184 80 menu edition des tracks;
 #X obj 132 117 Menu_2;
+#X obj 245 256 receive idRack;
+#X obj 52 273 outlet;
+#X text 105 277 rack;
 #X connect 0 0 7 0;
 #X connect 7 0 10 0;
 #X connect 7 1 10 1;
 #X connect 10 0 1 0;
 #X connect 10 1 2 0;
 #X connect 10 2 3 0;
+#X connect 11 0 12 0;

@@ -5,6 +5,7 @@ from oled.affichage import *
 
 
 lastIdInstru=1
+lastIdRack=1
 lastIdPas=0
 lastPas=0
 lastIdMenu=0
@@ -58,9 +59,11 @@ def clear_velo():
 
 def default_handler(address, *args):
     print(address,args)
-    global lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute,lastBpm,isPlaying,lastNbMesures,lastMasterVol, lastKit
+    global lastIdRack,lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute,lastBpm,isPlaying,lastNbMesures,lastMasterVol, lastKit
     if(address=="/idMenu"):
         lastIdMenu=round(args[0])
+    if(address=="/idRack"):
+        lastIdRack=round(args[0])
     if(address=="/idInstru"):
         lastIdInstru=round(args[0])
     if(address=="/idPas"):
@@ -87,10 +90,12 @@ def default_handler(address, *args):
         analFiles(lastKit)
     if(address=="/askFolders"):
         analFolders()
-    if lastIdMenu==2:
+    if lastIdMenu==3:
         affSeq(lastIdInstru,finalFilesNames[lastIdInstru-1],lastIdPas,lastPas,list_velos[lastIdInstru-1])
-    if lastIdMenu==1:
+    if lastIdMenu==2:
         affMenu(folders[lastKit],lastIdInstru,list_mute)
+    if lastIdMenu==1:
+        affRackMenu(lastIdRack)
     if lastIdMenu==0:
         affMainMenu(lastBpm,isPlaying,lastNbMesures,lastMasterVol,folders[lastKit])
 
