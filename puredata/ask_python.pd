@@ -1,4 +1,4 @@
-#N canvas 58 223 929 584 10;
+#N canvas 55 223 583 584 10;
 #X obj 162 146 send to_osc;
 #X obj 78 284 oscparse;
 #X obj 78 251 netreceive -u -b;
@@ -6,7 +6,7 @@
 #X obj 78 190 loadbang;
 #X obj 156 191 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 78 399 send fileN;
+#X obj 78 401 send fileN;
 #X obj 78 332 route list;
 #X msg 162 119 set askFiles;
 #X obj 402 147 send to_osc;
@@ -17,6 +17,7 @@
 -1;
 #X obj 171 399 send folderL;
 #X obj 162 76 receive idFolder;
+#X obj 328 422 print fileName;
 #X connect 1 0 7 0;
 #X connect 2 0 1 0;
 #X connect 3 0 2 0;

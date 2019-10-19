@@ -9,7 +9,7 @@ finalFilesNames=[];
 
 i=0
 j=0
-while j<12:
+while j<4:
     finalFilesNames.append([])
     while i<12:
         finalFilesNames[j].append("x")
@@ -29,10 +29,10 @@ def analFolders():
 
 
 def analFiles(idRack,idFolder):
-    name=folders[round(idFolder)]
+    name=folders[idFolder]
     filesNames=listFiles(name)
     i=0
-    print("name:",name)
+    #print("name:",name)
 
     while i<len(filesNames):
         
@@ -49,4 +49,4 @@ def analFiles(idRack,idFolder):
         msg = msg.build()
         client.send(msg)
         i+=1
-    print("final:",finalFilesNames)
+    #print("final:",finalFilesNames)

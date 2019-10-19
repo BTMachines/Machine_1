@@ -11,9 +11,9 @@ lastPas=0
 lastIdMenu=0
 lastBpm=0
 isPlaying=0
-lastNbMesures=0
+lastNbRackMesures=[]
 nbPlayers=12
-nbRack=12
+nbRack=4
 lastMasterVol=0
 lastKit=[]
 
@@ -28,6 +28,8 @@ while j<nbRack:
     list_mute.append([])
     list_velos.append([])
     lastKit.append(0)
+    lastNbRackMesures.append(4)
+    analFiles(j+1,lastKit[j])
     list_rack_mute.append(False)
     while i<nbPlayers:
         list_mute[j].append(False)
@@ -90,22 +92,22 @@ def default_handler(address, *args):
     if(address=="/playPause"):
         isPlaying=round(args[0])
     if(address=="/nbMesures"):
-        lastNbMesures=round(args[0])
+        lastNbRackMesures[lastIdRack-1]=round(args[0])
     if(address=="/masterVol"):
         lastMasterVol=round(args[0]*100)
     if(address=="/askFiles"):
-        lastKit=round(args[0])
-        analFiles(lastIdRack,lastKit)
+        lastKit[lastIdRack-1]=round(args[0])
+        analFiles(lastIdRack,lastKit[lastIdRack-1])
     if(address=="/askFolders"):
         analFolders()
     if lastIdMenu==3:
         affSeq(lastIdRack,lastIdInstru,finalFilesNames[lastIdRack-1],lastIdPas,lastPas,list_velos[lastIdRack-1][lastIdInstru-1])
     if lastIdMenu==2:
-        affTrackMenu(folders[lastKit],lastIdRack,finalFilesNames,lastIdInstru,list_mute[lastIdRack-1])
+        affTrackMenu(folders[lastKit[lastIdRack-1]],lastIdRack,finalFilesNames,lastIdInstru,list_mute[lastIdRack-1])
     if lastIdMenu==1:
-        affRackMenu(lastIdRack,list_rack_mute)
+        affRackMenu(lastIdRack,list_rack_mute,folders[lastKit[lastIdRack-1]],lastNbRackMesures[lastIdRack-1])
     if lastIdMenu==0:
-        affMainMenu(lastBpm,isPlaying,lastNbMesures,lastMasterVol,folders[lastKit])
+        affMainMenu(lastBpm,isPlaying,lastMasterVol)
 
 
 dispatcher = Dispatcher()
