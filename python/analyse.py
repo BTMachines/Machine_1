@@ -8,9 +8,14 @@ folders=listRepo();
 finalFilesNames=[];
 
 i=0
-while i<12:
-    finalFilesNames.append("x")
-    i+=1
+j=0
+while j<12:
+    finalFilesNames.append([])
+    while i<12:
+        finalFilesNames[j].append("x")
+        i+=1
+    i=0
+    j+=1
 
 #print(folders)
 
@@ -23,7 +28,7 @@ def analFolders():
     client.send(msg)
 
 
-def analFiles(idFolder):
+def analFiles(idRack,idFolder):
     name=folders[round(idFolder)]
     filesNames=listFiles(name)
     i=0
@@ -35,7 +40,7 @@ def analFiles(idFolder):
         numId=int(analyse[0])
         print("numid:",numId," name:",analyse[1])
         nakedName=analyse[1].split(".")
-        finalFilesNames[numId-1]=nakedName[0]
+        finalFilesNames[idRack-1][numId-1]=nakedName[0]
         addr="/fileName"
         msg = osc_message_builder.OscMessageBuilder(address=addr)
         msg.add_arg(numId)

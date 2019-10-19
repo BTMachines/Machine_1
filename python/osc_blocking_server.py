@@ -13,46 +13,54 @@ lastBpm=0
 isPlaying=0
 lastNbMesures=0
 nbPlayers=12
+nbRack=12
 lastMasterVol=0
-lastKit=0
+lastKit=[]
 
-list_velos=[[],[],[],[],[],[],[],[],[],[],[],[]]
+
+list_velos=[]
 list_mute=[]
-i=0
-while i<nbPlayers:
-    list_mute.append(False)
-    i+=1
-
-
-i=0
+list_rack_mute=[]
 j=0
-while j<nbPlayers:
-    while i<64:
-        list_velos[j].append(0)
+i=0
+h=0
+while j<nbRack:
+    list_mute.append([])
+    list_velos.append([])
+    lastKit.append(0)
+    list_rack_mute.append(False)
+    while i<nbPlayers:
+        list_mute[j].append(False)
+        list_velos[j].append([])
+        while h<64:
+            list_velos[j][i].append(0)
+            h+=1
         i+=1
-    i=0
+        h=0
     j+=1
+    i=0
+
 
 
 def tri_velo(arguments):
         #print("trivelo",arguments)
-        global lastIdInstru, lastIdPas
-        list_velos[lastIdInstru-1][lastIdPas]=arguments[0]
+        global lastIdRack, lastIdInstru, lastIdPas
+        list_velos[lastIdRack-1][lastIdInstru-1][lastIdPas]=arguments[0]
         #print(list_velos[lastIdInstru])
 
 
 def tri_mute():
-    global lastIdInstru
-    if list_mute[lastIdInstru-1]==True:
-        list_mute[lastIdInstru-1]=False
-    elif list_mute[lastIdInstru-1]==False:
-        list_mute[lastIdInstru-1]=True
+    global lastIdRack,lastIdInstru
+    if list_mute[lastIdRack-1][lastIdInstru-1]==True:
+        list_mute[lastIdRack-1][lastIdInstru-1]=False
+    elif list_mute[lastIdRack-1][lastIdInstru-1]==False:
+        list_mute[lastIdRack-1][lastIdInstru-1]=True
 
 def clear_velo():
-    global lastIdInstru
+    global lastIdInstru, lastIdRack
     i=0
     while i<64:
-        list_velos[lastIdInstru-1][i]=0
+        list_velos[lastIdRack-1][lastIdInstru-1][i]=0
         i+=1
 
 
@@ -87,15 +95,15 @@ def default_handler(address, *args):
         lastMasterVol=round(args[0]*100)
     if(address=="/askFiles"):
         lastKit=round(args[0])
-        analFiles(lastKit)
+        analFiles(lastIdRack,lastKit)
     if(address=="/askFolders"):
         analFolders()
     if lastIdMenu==3:
-        affSeq(lastIdInstru,finalFilesNames[lastIdInstru-1],lastIdPas,lastPas,list_velos[lastIdInstru-1])
+        affSeq(lastIdRack,lastIdInstru,finalFilesNames[lastIdRack-1],lastIdPas,lastPas,list_velos[lastIdRack-1][lastIdInstru-1])
     if lastIdMenu==2:
-        affMenu(folders[lastKit],lastIdInstru,list_mute)
+        affTrackMenu(folders[lastKit],lastIdRack,finalFilesNames,lastIdInstru,list_mute[lastIdRack-1])
     if lastIdMenu==1:
-        affRackMenu(lastIdRack)
+        affRackMenu(lastIdRack,list_rack_mute)
     if lastIdMenu==0:
         affMainMenu(lastBpm,isPlaying,lastNbMesures,lastMasterVol,folders[lastKit])
 

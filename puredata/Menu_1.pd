@@ -1,4 +1,4 @@
-#N canvas 20 127 1685 953 10;
+#N canvas 19 127 1685 953 10;
 #X obj 245 83 inlet;
 #X obj 386 639 outlet;
 #X obj 620 533 outlet;
@@ -90,6 +90,8 @@
 #X obj 1306 607 send idRack;
 #X obj 1418 620 send to_osc;
 #X msg 1418 595 set idRack;
+#X obj 1419 518 loadbang;
+#X msg 1419 543 1;
 #X connect 0 0 8 0;
 #X connect 3 0 8 0;
 #X connect 4 0 8 0;
@@ -191,3 +193,5 @@
 #X connect 77 1 78 0;
 #X connect 78 0 75 0;
 #X connect 81 0 80 0;
+#X connect 82 0 83 0;
+#X connect 83 0 75 0;

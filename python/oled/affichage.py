@@ -70,23 +70,41 @@ def affMainMenu(bpm, play,mesures,master,kitName):
     disp.image(image)
     disp.display()
     
-def affRackMenu(rackId):
+def affRackMenu(idRack,listMute):
     
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)   
-    draw.text((0,40),"rackMenu"+str(rackId),  font=font, fill=255)
+    draw.text((0,0),"Racks / "+str(idRack),  font=font, fill=255)
+    j=0
+    i=0
+    idCount=0
+    while j<3:
+        while i<4: 
+            draw.text((i*carre2_width,marge_top+j*carre2_height),str(idCount+1),  font=font, fill=255)
+
+            if idCount==idRack-1:
+                draw.rectangle((i*carre2_width+15,marge_top+j*carre2_height,i*carre2_width+12,marge_top+j*carre2_height+carre2_size), outline=255, fill=255) #center 
+
+            if listMute[idCount]==False:
+                draw.rectangle((i*carre2_width+15,marge_top+j*carre2_height,i*carre2_width+carre2_size+15,marge_top+j*carre2_height+carre2_size), outline=255, fill=0) #center 
+            else:  
+                draw.rectangle((i*carre2_width+18,marge_top+j*carre2_height+3,i*carre2_width+carre2_size+12,marge_top+j*carre2_height+carre2_size-3), outline=255, fill=255) #center 
+            i+=1
+            idCount+=1
+        j+=1
+        i=0
     disp.image(image)
     disp.display()
     
 
-def affMenu(kitName,idInstru,listMute):
+def affTrackMenu(kitName,idRack,fileNames,idInstru,listMute):
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     #font = ImageFont.load_default()
-    draw.text((0,0),kitName,  font=font, fill=255)
+    draw.text((0,0),kitName+" / "+fileNames[idRack-1][idInstru-1],  font=font, fill=255)
     #draw.text((40,0),str(idInstru),  font=font, fill=255)
-    if listMute[idInstru-1]==True:
-        draw.text((70,0),"mute",  font=font, fill=255)
+    #if listMute[idInstru-1]==True:
+    #    draw.text((70,0),"mute",  font=font, fill=255)
     
     j=0
     i=0
@@ -109,14 +127,13 @@ def affMenu(kitName,idInstru,listMute):
     disp.image(image)
     disp.display()
 
-def affSeq(idInstru,nameInstru,idPas,pas,listVelo):
+def affSeq(idRack,idInstru,nameInstru,idPas,pas,listVelo):
 
 
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     #font = ImageFont.load_default()
-    draw.text((0,0),str(idInstru),  font=font, fill=255)
-    draw.text((15,0),nameInstru,  font=font, fill=255)
+    draw.text((0,0),str(idInstru)+" / "+nameInstru[idInstru-1],  font=font, fill=255)
     #draw.text((30,0),str(round(idPas)),  font=font, fill=255)
     draw.text((100,0),str(listVelo[idPas]),  font=font, fill=255)
     #draw.text((20,0),str(round(idPas)),  font=font, fill=255)
