@@ -1,6 +1,6 @@
 #N canvas 2 71 1809 913 10;
 #X obj 171 391 outlet~;
-#X obj 57 201 inlet;
+#X obj 36 201 inlet;
 #X obj 208 72 inlet;
 #X obj 208 187 unpack f f f;
 #X obj 172 295 mute_box 1, f 16;
@@ -62,6 +62,7 @@
 #X connect 1 0 24 0;
 #X connect 1 0 25 0;
 #X connect 1 0 26 0;
+#X connect 1 0 50 0;
 #X connect 2 0 16 0;
 #X connect 3 0 5 1;
 #X connect 3 1 5 2;
