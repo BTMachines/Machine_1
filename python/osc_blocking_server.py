@@ -91,8 +91,9 @@ def default_handler(address, *args):
         lastBpm=round(args[0])
     if(address=="/playPause"):
         isPlaying=round(args[0])
-    if(address=="/nbMesures"):
+    if(address=="/nbRackMesures"):
         lastNbRackMesures[lastIdRack-1]=round(args[0])
+        print("ok")
     if(address=="/masterVol"):
         lastMasterVol=round(args[0]*100)
     if(address=="/askFiles"):

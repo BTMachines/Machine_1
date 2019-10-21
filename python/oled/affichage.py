@@ -57,10 +57,13 @@ def affMainMenu(bpm, play,master):
         playTitle="Paused"
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)
+    draw.rectangle((0,0,34,12), outline=0, fill=255)
+
     #font = ImageFont.load_default()
-    draw.text((0,0),playTitle,  font=font, fill=255)
-    draw.text((0,15),"bpm:"+str(round(bpm)),  font=font, fill=255)
-    draw.text((0,30),"master:"+(str(master))+"%",  font=font, fill=255)
+    draw.text((2,0),"BTM_1",  font=font, fill=0)
+    draw.text((0,20),playTitle,  font=font, fill=255)
+    draw.text((0,35),"bpm:"+str(round(bpm)),  font=font, fill=255)
+    draw.text((0,50),"master:"+(str(master))+"%",  font=font, fill=255)
 
     disp.image(image)
     disp.display()
@@ -135,7 +138,7 @@ def affSeq(idRack,idInstru,nameInstru,idPas,pas,listVelo):
     #font = ImageFont.load_default()
     draw.text((0,0),str(idInstru)+" / "+nameInstru[idInstru-1],  font=font, fill=255)
     #draw.text((30,0),str(round(idPas)),  font=font, fill=255)
-    draw.text((100,0),str(listVelo[idPas]),  font=font, fill=255)
+    draw.text((95,0),str(listVelo[idPas]),  font=font, fill=255)
     #draw.text((20,0),str(round(idPas)),  font=font, fill=255)
     idPas=round(idPas);
     #print("idpas : ",idPas)

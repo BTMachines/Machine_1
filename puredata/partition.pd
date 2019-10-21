@@ -137,6 +137,8 @@
 -1 -1;
 #X floatatom 251 225 5 0 0 0 - - -, f 5;
 #X obj 286 74 loadbang;
+#X obj 391 305 seq_to_osc;
+#X obj 391 268 spigot;
 #X connect 0 0 2 0;
 #X connect 0 0 3 0;
 #X connect 1 0 4 0;
@@ -205,7 +207,9 @@
 #X connect 79 1 83 0;
 #X connect 80 0 86 0;
 #X connect 82 0 84 1;
+#X connect 82 0 100 1;
 #X connect 83 0 84 1;
+#X connect 83 0 100 1;
 #X connect 84 0 86 0;
 #X connect 85 0 84 0;
 #X connect 86 0 81 0;
@@ -216,6 +220,7 @@
 #X connect 88 1 91 0;
 #X connect 89 0 88 0;
 #X connect 89 0 92 0;
+#X connect 89 0 100 0;
 #X connect 90 0 89 1;
 #X connect 91 0 89 1;
 #X connect 92 0 48 0;
@@ -235,3 +240,4 @@
 #X connect 95 0 96 0;
 #X connect 96 0 89 0;
 #X connect 98 0 80 0;
+#X connect 100 0 99 0;

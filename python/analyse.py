@@ -38,7 +38,7 @@ def analFiles(idRack,idFolder):
         
         analyse= filesNames[i].split("_")
         numId=int(analyse[0])
-        print("numid:",numId," name:",analyse[1])
+        #print("numid:",numId," name:",analyse[1])
         nakedName=analyse[1].split(".")
         finalFilesNames[idRack-1][numId-1]=nakedName[0]
         addr="/fileName"
