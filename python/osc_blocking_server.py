@@ -11,11 +11,13 @@ lastPas=0
 lastIdMenu=0
 lastBpm=0
 isPlaying=0
-lastNbRackMesures=[]
 nbPlayers=12
 nbRack=4
 lastMasterVol=0
 lastKit=[]
+mode=0
+list_vol=[]
+list_mesure=[]
 
 
 list_velos=[]
@@ -25,15 +27,19 @@ j=0
 i=0
 h=0
 while j<nbRack:
+    list_vol.append([])
     list_mute.append([])
     list_velos.append([])
+    list_mesure.append([])
     lastKit.append(0)
-    lastNbRackMesures.append(4)
     analFiles(j+1,lastKit[j])
     list_rack_mute.append(False)
     while i<nbPlayers:
+        list_vol[j].append(0.5)
         list_mute[j].append(False)
         list_velos[j].append([])
+        list_mesure[j].append([0,16])
+                    
         while h<64:
             list_velos[j][i].append(0)
             h+=1
@@ -58,6 +64,14 @@ def tri_mute():
     elif list_mute[lastIdRack-1][lastIdInstru-1]==False:
         list_mute[lastIdRack-1][lastIdInstru-1]=True
 
+def tri_rackMute():
+    global lastIdRack
+    if list_rack_mute[lastIdRack-1]==True:
+        list_rack_mute[lastIdRack-1]=False
+    elif list_rack_mute[lastIdRack-1]==False:
+        list_rack_mute[lastIdRack-1]=True
+
+
 def clear_velo():
     global lastIdInstru, lastIdRack
     i=0
@@ -69,7 +83,7 @@ def clear_velo():
 
 def default_handler(address, *args):
     print(address,args)
-    global lastIdRack,lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute,lastBpm,isPlaying,lastNbMesures,lastMasterVol, lastKit
+    global lastIdRack,lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute,lastBpm,isPlaying,lastNbMesures,lastMasterVol, lastKit, mode
     if(address=="/idMenu"):
         lastIdMenu=round(args[0])
     if(address=="/idRack"):
@@ -85,15 +99,22 @@ def default_handler(address, *args):
         tri_velo(args)
     if(address=="/muteId"):
         tri_mute()
+    if(address=="/muteRackId"):
+        tri_rackMute()
     if(address=="/clear"):
         clear_velo()
+    if(address=="/trackVol"):
+        list_vol[lastIdRack-1][lastIdInstru-1]=round(args[0]*10)/10
+    if(address=="/switchMode"):
+        mode=round(args[0])
     if(address=="/BPM"):
         lastBpm=round(args[0])
     if(address=="/playPause"):
         isPlaying=round(args[0])
-    if(address=="/nbRackMesures"):
-        lastNbRackMesures[lastIdRack-1]=round(args[0])
-        print("ok")
+    if(address=="/beginMesure"):
+        list_mesure[lastIdRack-1][lastIdInstru-1][0]=round(args[0])
+    if(address=="/endMesure"):
+        list_mesure[lastIdRack-1][lastIdInstru-1][1]=round(args[0])
     if(address=="/masterVol"):
         lastMasterVol=round(args[0]*100)
     if(address=="/askFiles"):
@@ -102,11 +123,11 @@ def default_handler(address, *args):
     if(address=="/askFolders"):
         analFolders()
     if lastIdMenu==3:
-        affSeq(lastIdRack,lastIdInstru,finalFilesNames[lastIdRack-1],lastIdPas,lastPas,list_velos[lastIdRack-1][lastIdInstru-1])
+        affSeq(lastIdRack,lastIdInstru,finalFilesNames[lastIdRack-1],lastIdPas,lastPas,list_velos[lastIdRack-1][lastIdInstru-1],list_vol[lastIdRack-1][lastIdInstru-1],list_mesure[lastIdRack-1][lastIdInstru-1])
     if lastIdMenu==2:
-        affTrackMenu(folders[lastKit[lastIdRack-1]],lastIdRack,finalFilesNames,lastIdInstru,list_mute[lastIdRack-1])
+        affTrackMenu(folders[lastKit[lastIdRack-1]],lastIdRack,finalFilesNames,lastIdInstru,list_mute[lastIdRack-1],mode,list_vol[lastIdRack-1][lastIdInstru-1],list_mesure[lastIdRack-1][lastIdInstru-1])
     if lastIdMenu==1:
-        affRackMenu(lastIdRack,list_rack_mute,folders[lastKit[lastIdRack-1]],lastNbRackMesures[lastIdRack-1])
+        affRackMenu(lastIdRack,list_rack_mute,folders[lastKit[lastIdRack-1]])
     if lastIdMenu==0:
         affMainMenu(lastBpm,isPlaying,lastMasterVol)
 

@@ -33,12 +33,12 @@ image = Image.new('1', (width, height))
 carre_width=width/18
 carre_size=4
 carre2_width=width/4
-carre2_size=8
+carre2_size=6
 marge_top=20
 marge_top2=15
 
 carre_height=(height-marge_top)/4
-carre2_height=(height-marge_top)/3
+carre2_height=(height-marge_top)/4
 
 lastpas=0
 font = ImageFont.load_default()
@@ -68,29 +68,27 @@ def affMainMenu(bpm, play,master):
     disp.image(image)
     disp.display()
     
-def affRackMenu(idRack,listMute,kitName,mesureLength):
+def affRackMenu(idRack,listMute,kitName):
     
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)   
     draw.text((0,0),"Racks: "+str(idRack),  font=font, fill=255)
-    draw.text((0,30),"kit: "+kitName,  font=font, fill=255)
-    draw.text((0,45),"mesure: "+str(mesureLength),  font=font, fill=255)
-
+    draw.text((0,38),"kit: "+kitName,  font=font, fill=255)
 
     j=0
     i=0
     idCount=0
     while j<1:
         while i<4: 
-            draw.text((i*carre2_width,marge_top2+j*carre2_height),str(idCount+1),  font=font, fill=255)
+            draw.text((i*carre2_width,marge_top+j*carre2_height-1),str(idCount+1),  font=font, fill=255)
 
             if idCount==idRack-1:
-                draw.rectangle((i*carre2_width+15,marge_top2+j*carre2_height,i*carre2_width+12,marge_top2+j*carre2_height+carre2_size), outline=255, fill=255) #center 
+                draw.rectangle((i*carre2_width+15,marge_top+j*carre2_height,i*carre2_width+12,marge_top+j*carre2_height+carre2_size), outline=255, fill=255) #center 
 
             if listMute[idCount]==False:
-                draw.rectangle((i*carre2_width+15,marge_top2+j*carre2_height,i*carre2_width+carre2_size+15,marge_top2+j*carre2_height+carre2_size), outline=255, fill=0) #center 
+                draw.rectangle((i*carre2_width+15,marge_top+j*carre2_height,i*carre2_width+carre2_size+15,marge_top+j*carre2_height+carre2_size), outline=255, fill=0) #center 
             else:  
-                draw.rectangle((i*carre2_width+18,marge_top2+j*carre2_height+3,i*carre2_width+carre2_size+12,marge_top2+j*carre2_height+carre2_size-3), outline=255, fill=255) #center 
+                draw.rectangle((i*carre2_width+18,marge_top+j*carre2_height+3,i*carre2_width+carre2_size+12,marge_top+j*carre2_height+carre2_size-3), outline=255, fill=255) #center 
             i+=1
             idCount+=1
         j+=1
@@ -99,12 +97,18 @@ def affRackMenu(idRack,listMute,kitName,mesureLength):
     disp.display()
     
 
-def affTrackMenu(kitName,idRack,fileNames,idInstru,listMute):
+def affTrackMenu(kitName,idRack,fileNames,idInstru,listMute,mode,vol,beginEnd):
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     #font = ImageFont.load_default()
-    draw.text((0,0),kitName+" / "+fileNames[idRack-1][idInstru-1],  font=font, fill=255)
+    draw.text((0,0),str(idRack)+":"+kitName+"/ "+fileNames[idRack-1][idInstru-1],  font=font, fill=255)
+    draw.text((0,55),"vol:"+str(vol),  font=font, fill=255)
+    draw.text((64,55),"mesure:"+str(round(beginEnd[1]/4)),  font=font, fill=255)
+    if mode==1:
+        draw.rectangle((107,0,116,10), outline=0, fill=255)
+        draw.text((110,0),"C",  font=font, fill=0)
 
+        
     #draw.text((40,0),str(idInstru),  font=font, fill=255)
     #if listMute[idInstru-1]==True:
     #    draw.text((70,0),"mute",  font=font, fill=255)
@@ -114,7 +118,7 @@ def affTrackMenu(kitName,idRack,fileNames,idInstru,listMute):
     idCount=0
     while j<3:
         while i<4: 
-            draw.text((i*carre2_width,marge_top+j*carre2_height),str(idCount+1),  font=font, fill=255)
+            draw.text((i*carre2_width,marge_top+j*carre2_height-1),str(idCount+1),  font=font, fill=255)
 
             if idCount==idInstru-1:
                 draw.rectangle((i*carre2_width+15,marge_top+j*carre2_height,i*carre2_width+12,marge_top+j*carre2_height+carre2_size), outline=255, fill=255) #center 
@@ -130,7 +134,7 @@ def affTrackMenu(kitName,idRack,fileNames,idInstru,listMute):
     disp.image(image)
     disp.display()
 
-def affSeq(idRack,idInstru,nameInstru,idPas,pas,listVelo):
+def affSeq(idRack,idInstru,nameInstru,idPas,pas,listVelo,vol,beginEnd):
 
 
     draw = ImageDraw.Draw(image)
@@ -138,49 +142,40 @@ def affSeq(idRack,idInstru,nameInstru,idPas,pas,listVelo):
     #font = ImageFont.load_default()
     draw.text((0,0),str(idInstru)+" / "+nameInstru[idInstru-1],  font=font, fill=255)
     #draw.text((30,0),str(round(idPas)),  font=font, fill=255)
-    draw.text((95,0),str(listVelo[idPas]),  font=font, fill=255)
-    #draw.text((20,0),str(round(idPas)),  font=font, fill=255)
+    draw.rectangle((99,0,126,10), outline=0, fill=255)
+    draw.text((101,0),str(listVelo[idPas]),  font=font, fill=0)
+    draw.text((0,55),"vol:"+str(vol),  font=font, fill=255)
     idPas=round(idPas);
-    #print("idpas : ",idPas)
+    print("vol : ",vol)
+    
+    
     i=0
-    per_line=16
-    pas_pos=[0,0,0]
-    reste=idPas
-    j=0
-    i=0
-    pas=pas*4
-    
-    
-    
-    while j<3:
-        while i<4:
-            if reste>=i*per_line:
-                pas_pos[j]=i;
-            i+=1
-        #print("pos",j,":",pas_pos[j])
-        i=0
-        j+=1
-        reste=reste-pas_pos[j-1]*per_line
-        #print("reste",j,": ",reste)
-        per_line=per_line/4
-        
     j=0
     idCount=0
     col=0
     xInc=0
     margeInterval=4
+    end=beginEnd[0]+beginEnd[1]-1
+    if end>=64:
+        end-=64
     
     while j<4:
         while i<16: 
+            x=3+i*carre_width+xInc
+            y=marge_top+j*(carre_height-3)
             if listVelo[idCount]!=0:
                 col=255
             else:
                 col=0
-            draw.rectangle((i*carre_width+xInc,marge_top+j*carre_height,i*carre_width+carre_size+xInc,marge_top+j*carre_height+carre_size), outline=255, fill=col) #center 
-            if pas==idCount:
-                draw.rectangle((i*carre_width+xInc,marge_top+j*carre_height+carre_size,i*carre_width+carre_size+xInc,marge_top+j*carre_height+carre_size+1), outline=255, fill=255) #center 
-
-            
+            draw.rectangle((x,y,x+carre_size,y+carre_size), outline=255, fill=col) #center 
+            if (pas)==idCount:
+                draw.rectangle((x,y+carre_size,x+carre_size,y+carre_size+1), outline=255, fill=255) #center 
+            if idPas==idCount:
+                draw.rectangle((x,y,x+carre_size,y-1), outline=255, fill=255) #center 
+            if beginEnd[0]==idCount:
+                draw.rectangle((x-3,y,x-2,y+carre_size), outline=255, fill=255) #center 
+            if end==idCount:
+                draw.rectangle((x+carre2_size+1,y,x+carre_size+2,y+carre_size), outline=255, fill=255) #center 
             idCount+=1
             i+=1
             if i%4==0:
@@ -189,9 +184,6 @@ def affSeq(idRack,idInstru,nameInstru,idPas,pas,listVelo):
         i=0
         xInc=0
 
-    pos_1=pas_pos[1]*carre_width*4+pas_pos[2]*carre_width+pas_pos[1]*margeInterval
-    draw.rectangle((pos_1,marge_top+pas_pos[0]*carre_height,pos_1+carre_size,marge_top+pas_pos[0]*carre_height-3), outline=255, fill=255) #center 
-    
     disp.image(image)
     disp.display()
     

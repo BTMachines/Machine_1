@@ -1,4 +1,4 @@
-#N canvas 413 303 358 681 10;
+#N canvas 412 100 358 681 10;
 #X obj 17 52 receive fileN;
 #X obj 17 224 route 1 2 3 4 5 6 7 8 9 10 11 12;
 #X obj 17 391 outlet;
@@ -48,5 +48,4 @@
 #X connect 19 0 22 1;
 #X connect 20 0 23 0;
 #X connect 22 0 1 0;
-#X connect 22 0 21 0;
 #X connect 23 0 19 0;
