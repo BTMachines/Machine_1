@@ -1,4 +1,4 @@
-#N canvas 15 84 625 359 10;
+#N canvas 2 71 1009 697 10;
 #X obj -67 108 inlet;
 #X text -38 84 vel from partition;
 #X obj -68 269 outlet~;

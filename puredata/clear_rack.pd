@@ -1,0 +1,53 @@
+#N canvas 285 126 650 517 10;
+#X obj 56 76 inlet;
+#X obj 209 208 send to_osc;
+#X obj 165 109 receive idRack;
+#X obj 56 166 route 0, f 8;
+#X msg 209 183 set clearRack;
+#X obj 56 319 + 1;
+#X obj 109 358 delay 1;
+#X obj 56 394 pack f f, f 27;
+#X floatatom 56 342 5 0 0 0 - - -, f 5;
+#X obj 109 336 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 56 204 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 56 263 0;
+#X msg 109 312 0;
+#X obj 56 292 moses 12;
+#X msg 271 374 \; \$1_tracks_volume 0 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
+0.5 0.5 0.5 0.5, f 23;
+#X msg 271 435 \; \$1_begin_mesure 0 0 0 0 0 0 0 0 0 0 0 0 0, f 22
+;
+#X msg 56 422 \; \$2_vel_\$1 resize 0 \; \$2_vel_\$1 0 0 \; \$2_vel_\$1
+resize 64 \;;
+#X obj 56 134 pack float float;
+#X floatatom 205 142 5 0 0 0 - - -, f 5;
+#X obj 56 234 delay 1;
+#X msg 271 287 \; \$1_end_mesure 0 16 16 16 16 16 16 16 16 16 16 16
+16, f 13;
+#X connect 0 0 17 0;
+#X connect 2 0 17 1;
+#X connect 2 0 18 0;
+#X connect 3 0 7 1;
+#X connect 3 0 4 0;
+#X connect 3 0 1 0;
+#X connect 3 0 20 0;
+#X connect 3 0 10 0;
+#X connect 4 0 1 0;
+#X connect 5 0 8 0;
+#X connect 5 0 9 0;
+#X connect 5 0 11 1;
+#X connect 6 0 11 0;
+#X connect 7 0 16 0;
+#X connect 8 0 7 0;
+#X connect 9 0 6 0;
+#X connect 10 0 19 0;
+#X connect 11 0 13 0;
+#X connect 12 0 11 1;
+#X connect 13 0 5 0;
+#X connect 13 1 12 0;
+#X connect 14 0 15 0;
+#X connect 17 0 3 0;
+#X connect 19 0 11 0;
+#X connect 20 0 14 0;

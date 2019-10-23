@@ -1,18 +1,19 @@
-#N canvas 603 356 650 517 10;
+#N canvas 74 204 688 361 10;
 #X obj 56 76 inlet;
-#X obj 292 208 send to_osc;
-#X msg 292 183 set clear;
-#X obj 200 103 receive idInstru;
-#X obj 128 76 receive idRack;
-#X obj 56 134 pack bang float float;
+#X obj 518 208 send to_osc;
+#X msg 518 183 set clear;
+#X obj 207 102 receive idInstru;
+#X obj 131 76 receive idRack;
 #X obj 56 166 route 0;
+#X obj 56 134 pack float float float;
 #X msg 56 202 \; \$1_vel_\$2 resize 0 \; \$1_vel_\$2 0 0 \; \$1_vel_\$2
-resize 64 \;;
-#X connect 0 0 5 0;
+resize 64 \; \$1_tracks_volume \$2 0.5 \$1_begin_mesure \$2 0 \$1_end_mesure
+\$2 16, f 28;
+#X connect 0 0 6 0;
 #X connect 2 0 1 0;
-#X connect 3 0 5 2;
-#X connect 4 0 5 1;
-#X connect 5 0 6 0;
-#X connect 6 0 7 0;
-#X connect 6 0 2 0;
-#X connect 6 0 1 0;
+#X connect 3 0 6 2;
+#X connect 4 0 6 1;
+#X connect 5 0 7 0;
+#X connect 5 0 2 0;
+#X connect 5 0 1 0;
+#X connect 6 0 5 0;

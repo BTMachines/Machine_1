@@ -68,12 +68,17 @@ def affMainMenu(bpm, play,master):
     disp.image(image)
     disp.display()
     
-def affRackMenu(idRack,listMute,kitName):
+def affRackMenu(idRack,listMute,kitName,mode,vol):
     
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)   
     draw.text((0,0),"Racks: "+str(idRack),  font=font, fill=255)
-    draw.text((0,38),"kit: "+kitName,  font=font, fill=255)
+    draw.text((0,37),"kit: "+kitName,  font=font, fill=255)
+    draw.text((0,55),"vol: "+str(vol)+"%",  font=font, fill=255)
+
+    if mode==1:
+        draw.rectangle((107,0,117,10), outline=0, fill=255)
+        draw.text((110,0),"C",  font=font, fill=0)
 
     j=0
     i=0
@@ -101,11 +106,11 @@ def affTrackMenu(kitName,idRack,fileNames,idInstru,listMute,mode,vol,beginEnd):
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     #font = ImageFont.load_default()
-    draw.text((0,0),str(idRack)+":"+kitName+"/ "+fileNames[idRack-1][idInstru-1],  font=font, fill=255)
-    draw.text((0,55),"vol:"+str(vol),  font=font, fill=255)
+    draw.text((0,0),str(idRack)+":"+kitName+": "+fileNames[idRack-1][idInstru-1],  font=font, fill=255)
+    draw.text((0,55),"vol:"+str(round(vol*100))+"%",  font=font, fill=255)
     draw.text((64,55),"mesure:"+str(round(beginEnd[1]/4)),  font=font, fill=255)
     if mode==1:
-        draw.rectangle((107,0,116,10), outline=0, fill=255)
+        draw.rectangle((107,0,117,10), outline=0, fill=255)
         draw.text((110,0),"C",  font=font, fill=0)
 
         
@@ -142,11 +147,10 @@ def affSeq(idRack,idInstru,nameInstru,idPas,pas,listVelo,vol,beginEnd):
     #font = ImageFont.load_default()
     draw.text((0,0),str(idInstru)+" / "+nameInstru[idInstru-1],  font=font, fill=255)
     #draw.text((30,0),str(round(idPas)),  font=font, fill=255)
-    draw.rectangle((99,0,126,10), outline=0, fill=255)
-    draw.text((101,0),str(listVelo[idPas]),  font=font, fill=0)
-    draw.text((0,55),"vol:"+str(vol),  font=font, fill=255)
+    draw.rectangle((96,0,123,10), outline=0, fill=255)
+    draw.text((98,0),str(round(listVelo[idPas]*100))+"%",  font=font, fill=0)
+    draw.text((0,55),"vol:"+str(round(vol*100))+"%",  font=font, fill=255)
     idPas=round(idPas);
-    print("vol : ",vol)
     
     
     i=0
@@ -154,7 +158,7 @@ def affSeq(idRack,idInstru,nameInstru,idPas,pas,listVelo,vol,beginEnd):
     idCount=0
     col=0
     xInc=0
-    margeInterval=4
+    margeInterval=3
     end=beginEnd[0]+beginEnd[1]-1
     if end>=64:
         end-=64

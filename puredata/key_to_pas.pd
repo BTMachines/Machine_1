@@ -39,6 +39,8 @@
 #X obj 624 291 - 64;
 #X obj 525 270 + 64;
 #X obj 525 226 0;
+#X obj 362 175 receive resetPas;
+#X msg 362 209 0;
 #X connect 0 0 4 0;
 #X connect 1 0 5 0;
 #X connect 4 0 18 0;
@@ -79,3 +81,5 @@
 #X connect 31 0 28 0;
 #X connect 32 0 28 0;
 #X connect 33 0 26 0;
+#X connect 34 0 35 0;
+#X connect 35 0 33 0;

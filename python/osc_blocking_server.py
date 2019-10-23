@@ -23,6 +23,7 @@ list_mesure=[]
 list_velos=[]
 list_mute=[]
 list_rack_mute=[]
+master_rack=[]
 j=0
 i=0
 h=0
@@ -34,6 +35,7 @@ while j<nbRack:
     lastKit.append(0)
     analFiles(j+1,lastKit[j])
     list_rack_mute.append(False)
+    master_rack.append(50)
     while i<nbPlayers:
         list_vol[j].append(0.5)
         list_mute[j].append(False)
@@ -74,12 +76,27 @@ def tri_rackMute():
 
 def clear_velo():
     global lastIdInstru, lastIdRack
+    list_vol[lastIdRack-1][lastIdInstru-1]=0.5
+    list_mute[lastIdRack-1][lastIdInstru-1]=False
+    list_mesure[lastIdRack-1][lastIdInstru-1]=[0,16]
     i=0
     while i<64:
         list_velos[lastIdRack-1][lastIdInstru-1][i]=0
         i+=1
 
-
+def clear_rack_velo():
+    global lastIdRack
+    i=0
+    j=0
+    while j<nbPlayers:
+        list_vol[lastIdRack-1][j]=0.5
+        list_mute[lastIdRack-1][j]=False
+        list_mesure[lastIdRack-1][j]=[0,16]
+        while i<64:
+            list_velos[lastIdRack-1][j][i]=0
+            i+=1
+        j+=1
+        i=0
 
 def default_handler(address, *args):
     print(address,args)
@@ -103,6 +120,8 @@ def default_handler(address, *args):
         tri_rackMute()
     if(address=="/clear"):
         clear_velo()
+    if(address=="/clearRack"):
+        clear_rack_velo()
     if(address=="/trackVol"):
         list_vol[lastIdRack-1][lastIdInstru-1]=round(args[0]*10)/10
     if(address=="/switchMode"):
@@ -117,6 +136,8 @@ def default_handler(address, *args):
         list_mesure[lastIdRack-1][lastIdInstru-1][1]=round(args[0])
     if(address=="/masterVol"):
         lastMasterVol=round(args[0]*100)
+    if(address=="/masterRack"):
+        master_rack[lastIdRack-1]=round(args[0]*100)
     if(address=="/askFiles"):
         lastKit[lastIdRack-1]=round(args[0])
         analFiles(lastIdRack,lastKit[lastIdRack-1])
@@ -127,7 +148,7 @@ def default_handler(address, *args):
     if lastIdMenu==2:
         affTrackMenu(folders[lastKit[lastIdRack-1]],lastIdRack,finalFilesNames,lastIdInstru,list_mute[lastIdRack-1],mode,list_vol[lastIdRack-1][lastIdInstru-1],list_mesure[lastIdRack-1][lastIdInstru-1])
     if lastIdMenu==1:
-        affRackMenu(lastIdRack,list_rack_mute,folders[lastKit[lastIdRack-1]])
+        affRackMenu(lastIdRack,list_rack_mute,folders[lastKit[lastIdRack-1]],mode,master_rack[lastIdRack-1])
     if lastIdMenu==0:
         affMainMenu(lastBpm,isPlaying,lastMasterVol)
 

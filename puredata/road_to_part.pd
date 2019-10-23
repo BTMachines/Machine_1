@@ -1,10 +1,10 @@
-#N canvas 559 399 831 336 10;
-#X obj 510 92 inlet;
-#X text 561 93 id_instru;
-#X obj 567 61 inlet;
-#X text 675 121 velocite;
-#X text 625 62 id_pas;
-#X obj 624 120 inlet;
+#N canvas 204 313 831 336 10;
+#X obj 513 92 inlet;
+#X text 566 93 id_instru;
+#X obj 572 61 inlet;
+#X text 682 121 velocite;
+#X text 630 62 id_pas;
+#X obj 631 120 inlet;
 #X obj 396 137 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 396 160 delay 1;
@@ -15,9 +15,9 @@
 #X msg 63 92 1;
 #X obj 396 239 outlet;
 #X obj 176 109 send idInstru;
-#X obj 453 47 inlet;
-#X text 503 48 id_rack;
-#X obj 396 187 pack bang float float float float;
+#X obj 454 47 inlet;
+#X text 504 48 id_rack;
+#X obj 396 187 pack float float float float float;
 #X connect 0 0 11 0;
 #X connect 0 0 10 0;
 #X connect 0 0 14 0;
