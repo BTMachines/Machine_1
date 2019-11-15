@@ -3,6 +3,7 @@ from pythonosc.osc_server import BlockingOSCUDPServer
 from analyse import *
 from oled.affichage import *
 
+chemin="/home/pi/Bureau/BTMachines_git/Machine_1/saves/"
 
 lastIdInstru=1
 lastIdRack=1
@@ -18,7 +19,6 @@ lastKit=[]
 mode=0
 list_vol=[]
 list_mesure=[]
-
 
 list_velos=[]
 list_mute=[]
@@ -41,7 +41,7 @@ while j<nbRack:
         list_mute[j].append(False)
         list_velos[j].append([])
         list_mesure[j].append([0,16])
-                    
+
         while h<64:
             list_velos[j][i].append(0)
             h+=1
@@ -97,6 +97,13 @@ def clear_rack_velo():
             i+=1
         j+=1
         i=0
+
+def saveSet(saveName):
+    name=chemin+saveName+".txt"
+    file = open(name,'w')
+    file.write(lastBpm+'\n')
+    file.close() #to change file access modes
+
 
 def default_handler(address, *args):
     print(address,args)
