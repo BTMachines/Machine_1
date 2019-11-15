@@ -4,6 +4,7 @@ from analyse import *
 from oled.affichage import *
 
 chemin="/home/pi/Bureau/BTMachines_git/Machine_1/saves/"
+saveName="default"
 
 lastIdInstru=1
 lastIdRack=1
@@ -98,16 +99,18 @@ def clear_rack_velo():
         j+=1
         i=0
 
-def saveSet(saveName):
+def saveSet():
     name=chemin+saveName+".txt"
     file = open(name,'w')
-    file.write(lastBpm+'\n')
+    file.write(str(lastBpm)+'\n')
     file.close() #to change file access modes
 
 
 def default_handler(address, *args):
     print(address,args)
     global lastIdRack,lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute,lastBpm,isPlaying,lastNbMesures,lastMasterVol, lastKit, mode
+    if(address=="/validSave"):
+        saveSet();
     if(address=="/idMenu"):
         lastIdMenu=round(args[0])
     if(address=="/idRack"):
@@ -158,7 +161,8 @@ def default_handler(address, *args):
         affRackMenu(lastIdRack,list_rack_mute,folders[lastKit[lastIdRack-1]],mode,master_rack[lastIdRack-1])
     if lastIdMenu==0:
         affMainMenu(lastBpm,isPlaying,lastMasterVol)
-
+    if lastIdMenu==-1:
+        affSaveMenu(saveName)
 
 dispatcher = Dispatcher()
 dispatcher.set_default_handler(default_handler)
