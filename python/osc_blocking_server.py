@@ -103,6 +103,10 @@ def saveSet():
     name=chemin+saveName+".txt"
     file = open(name,'w')
     file.write(str(lastBpm)+'\n')
+    file.write(str(lastMasterVol)+'\n')
+    for i in range(0,nbRack):
+        file.write(folders[lastKit[i]]+',')
+    file.write('\n')
     file.close() #to change file access modes
 
 

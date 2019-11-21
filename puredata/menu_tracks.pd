@@ -1,0 +1,45 @@
+#N canvas 2 73 660 332 10;
+#X obj 288 195 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 288 217 send muteBang;
+#X obj 312 169 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 312 191 clear_part;
+#X floatatom 196 188 5 0 0 0 - - -, f 5;
+#X obj 150 164 moses 5;
+#X obj 196 220 - 4;
+#X obj 288 85 route 1 3 2;
+#X obj 337 107 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 337 127 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 312 148 spigot;
+#X msg 433 142 set switchMode;
+#X obj 433 166 send to_osc;
+#X obj 48 41 inlet;
+#X obj 48 123 send idM;
+#X obj 48 68 route 0 4, f 15;
+#X msg 48 94 1;
+#X msg 99 94 3;
+#X obj 196 256 send idInstruFrom;
+#X connect 0 0 1 0;
+#X connect 2 0 3 0;
+#X connect 4 0 6 0;
+#X connect 5 1 4 0;
+#X connect 6 0 18 0;
+#X connect 7 0 0 0;
+#X connect 7 1 10 0;
+#X connect 7 2 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 1;
+#X connect 9 0 11 0;
+#X connect 9 0 12 0;
+#X connect 10 0 2 0;
+#X connect 11 0 12 0;
+#X connect 13 0 15 0;
+#X connect 15 0 16 0;
+#X connect 15 1 17 0;
+#X connect 15 2 5 0;
+#X connect 15 2 7 0;
+#X connect 16 0 14 0;
+#X connect 17 0 14 0;

@@ -1,0 +1,13 @@
+#N canvas 2 73 450 300 10;
+#X obj 101 161 send to_osc;
+#X msg 122 130 set validSave;
+#X obj 71 55 inlet;
+#X obj 71 87 route 0 4;
+#X msg 71 204 0;
+#X obj 71 248 send idM;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 3 1 1 0;
+#X connect 3 1 0 0;
+#X connect 4 0 5 0;
