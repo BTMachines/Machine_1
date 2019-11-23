@@ -5,6 +5,7 @@ from list_repository import *
 client = udp_client.UDPClient('localhost', 12000)
 
 folders=listRepo();
+filesSaves=listSaves();
 finalFilesNames=[];
 
 i=0
@@ -18,6 +19,16 @@ while j<4:
     j+=1
 
 #print(folders)
+
+def analSaves():
+    filesSaves=listSaves();
+    addr="/folderSaveLength"
+    msg = osc_message_builder.OscMessageBuilder(address=addr)
+    msg.add_arg(len(filesSaves))
+    print("SavelenFold:",len(filesSaves))
+    msg = msg.build()
+    client.send(msg)
+
 
 def analFolders():
     addr="/folderLength"

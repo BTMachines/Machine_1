@@ -54,6 +54,15 @@ def affSaveMenu(name):
     disp.image(image)
     disp.display()
     
+def affLoadMenu(name):
+    nakedname=name[:-4]
+    draw = ImageDraw.Draw(image)
+    draw.rectangle((0,0,width,height), outline=0, fill=255)
+    draw.text((10,10),"load menu",  font=font, fill=0)
+    draw.text((10,30),"name:"+nakedname,  font=font, fill=0)
+    disp.image(image)
+    disp.display()
+    
 
 def affMainMenu(bpm, play,master):
     

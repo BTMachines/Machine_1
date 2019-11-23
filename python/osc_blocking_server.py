@@ -2,6 +2,8 @@ from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import BlockingOSCUDPServer
 from analyse import *
 from oled.affichage import *
+import datetime
+
 
 chemin="/home/pi/Bureau/BTMachines_git/Machine_1/saves/"
 saveName="default"
@@ -17,6 +19,7 @@ nbPlayers=12
 nbRack=4
 lastMasterVol=0
 lastKit=[]
+lastLoadId=0
 mode=0
 list_vol=[]
 list_mesure=[]
@@ -98,8 +101,18 @@ def clear_rack_velo():
             i+=1
         j+=1
         i=0
+        
+def tri_load(arg):
+    #print("trivelo",arguments)
+    global lastLoadId
+    lastLoadId=arg
+        
 
 def saveSet():
+    global saveName
+    date = datetime.datetime.now()
+    saveName=str(date.day)+str(date.month)+str(date.year)[2:]+'-'+str(date.hour)+str(date.minute)+str(date.second)
+    print(saveName)
     name=chemin+saveName+".txt"
     file = open(name,'w')
     file.write(str(lastBpm)+'\n')
@@ -112,9 +125,9 @@ def saveSet():
 
 def default_handler(address, *args):
     print(address,args)
-    global lastIdRack,lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute,lastBpm,isPlaying,lastNbMesures,lastMasterVol, lastKit, mode
+    global lastIdRack,lastIdInstru, lastIdPas, lastPas, list_velos,lastIdMenu,list_mute,lastBpm,isPlaying,lastNbMesures,lastMasterVol, lastKit, mode,lastLoadId
     if(address=="/validSave"):
-        saveSet();
+        saveSet()
     if(address=="/idMenu"):
         lastIdMenu=round(args[0])
     if(address=="/idRack"):
@@ -157,6 +170,10 @@ def default_handler(address, *args):
         analFiles(lastIdRack,lastKit[lastIdRack-1])
     if(address=="/askFolders"):
         analFolders()
+    if(address=="/askSaves"):
+        analSaves()
+    if(address=="/idLoad"):
+        lastLoadId=round(args[0])
     if lastIdMenu==3:
         affSeq(lastIdRack,lastIdInstru,finalFilesNames[lastIdRack-1],lastIdPas,lastPas,list_velos[lastIdRack-1][lastIdInstru-1],list_vol[lastIdRack-1][lastIdInstru-1],list_mesure[lastIdRack-1][lastIdInstru-1])
     if lastIdMenu==2:
@@ -167,6 +184,8 @@ def default_handler(address, *args):
         affMainMenu(lastBpm,isPlaying,lastMasterVol)
     if lastIdMenu==-1:
         affSaveMenu(saveName)
+    if lastIdMenu==-2:
+        affLoadMenu(filesSaves[lastLoadId])
 
 dispatcher = Dispatcher()
 dispatcher.set_default_handler(default_handler)
