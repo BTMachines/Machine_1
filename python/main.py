@@ -2,78 +2,89 @@ from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import BlockingOSCUDPServer
 from analyse import *
 from commandes import *
-from tri_com import *
+from tricom import *
 from oled.affichage import *
 import datetime
 
 
-chemin="/home/pi/Bureau/BTMachines_git/Machine_1/saves/"
-saveName="default"
+inventaire={
+    "chemin":"/home/pi/Bureau/BTMachines_git/Machine_1/saves/",
+    "saveName":"default",
+    "lastIdInstru":1,
+    "lastIdRack":1,
+    "lastIdPas":0,
+    "lastPas":0,
+    "lastIdMenu":0,
+    "lastBpm":0,
+    "isPlaying":0,
+    "nbPlayers":12,
+    "nbRack":4,
+    "lastMasterVol":0,
+    "lastKit":[],
+    "lastLoadId":0,
+    "mode":0,
+    "list_vol":[],
+    "list_mesure":[],
+    "list_velos":[],
+    "list_mute":[],
+    "list_rack_mute":[],
+    "master_rack":[],
+    }
+    
 
-lastIdInstru=1
-lastIdRack=1
-lastIdPas=0
-lastPas=0
-lastIdMenu=0
-lastBpm=0
-isPlaying=0
-nbPlayers=12
-nbRack=4
-lastMasterVol=0
-lastKit=[]
-lastLoadId=0
-mode=0
-list_vol=[]
-list_mesure=[]
-
-list_velos=[]
-list_mute=[]
-list_rack_mute=[]
-master_rack=[]
-j=0
-i=0
-h=0
-while j<nbRack:
-    list_vol.append([])
-    list_mute.append([])
-    list_velos.append([])
-    list_mesure.append([])
-    lastKit.append(0)
-    analFiles(j+1,lastKit[j])
-    list_rack_mute.append(False)
-    master_rack.append(50)
-    while i<nbPlayers:
-        list_vol[j].append(0.5)
-        list_mute[j].append(False)
-        list_velos[j].append([])
-        list_mesure[j].append([0,16])
-
-        while h<64:
-            list_velos[j][i].append(0)
-            h+=1
-        i+=1
-        h=0
-    j+=1
+def initParams():
+    global inventaire
+    j=0
     i=0
+    h=0
+
+    for cle, valeur in inventaire.items():
+
+        while j<inventaire["nbRack"]:
+            analFiles(j+1,0)
+            inventaire["list_vol"].append([])
+            inventaire["list_mute"].append([])
+            inventaire["list_velos"].append([])
+            inventaire["list_mesure"].append([])
+            inventaire["lastKit"].append(0)
+            inventaire["list_rack_mute"].append(False)
+            inventaire["master_rack"].append(50)
+            while i<inventaire["nbPlayers"]:
+                inventaire["list_vol"][j].append(0.5)
+                inventaire["list_mute"][j].append(False)
+                inventaire["list_velos"][j].append([])
+                inventaire["list_mesure"][j].append([0,16])
+
+                while h<64:
+                    inventaire["list_velos"][j][i].append(0)
+                    h+=1
+                i+=1
+                h=0
+            j+=1
+            i=0
+
 
 
 def default_handler(address, *args):
+    global inventaire
     print("default_handler: ",address,*args)
-    toto()
-    triCom(address,*args)
+    inventaire=triCom(inventaire,address,*args)
 
-    if lastIdMenu==3:
-        affSeq(lastIdRack,lastIdInstru,finalFilesNames[lastIdRack-1],lastIdPas,lastPas,list_velos[lastIdRack-1][lastIdInstru-1],list_vol[lastIdRack-1][lastIdInstru-1],list_mesure[lastIdRack-1][lastIdInstru-1])
-    if lastIdMenu==2:
-        affTrackMenu(folders[lastKit[lastIdRack-1]],lastIdRack,finalFilesNames,lastIdInstru,list_mute[lastIdRack-1],mode,list_vol[lastIdRack-1][lastIdInstru-1],list_mesure[lastIdRack-1][lastIdInstru-1])
-    if lastIdMenu==1:
-        affRackMenu(lastIdRack,list_rack_mute,folders[lastKit[lastIdRack-1]],mode,master_rack[lastIdRack-1])
-    if lastIdMenu==0:
-        affMainMenu(lastBpm,isPlaying,lastMasterVol)
-    if lastIdMenu==-1:
-        affSaveMenu(saveName)
-    if lastIdMenu==-2:
-        affLoadMenu(filesSaves[lastLoadId])
+    if inventaire["lastIdMenu"]==3:
+        affSeq(inventaire)
+    if inventaire["lastIdMenu"]==2:
+        affTrackMenu(inventaire)
+    if inventaire["lastIdMenu"]==1:
+        affRackMenu(inventaire)
+    if inventaire["lastIdMenu"]==0:
+        affMainMenu(inventaire)
+    if inventaire["lastIdMenu"]==-1:
+        affSaveMenu(inventaire)
+    if inventaire["lastIdMenu"]==-2:
+        affLoadMenu(inventaire)
+        
+
+initParams()
 
 dispatcher = Dispatcher()
 dispatcher.set_default_handler(default_handler)

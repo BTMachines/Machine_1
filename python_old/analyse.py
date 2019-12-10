@@ -19,9 +19,6 @@ while j<4:
     j+=1
 
 #print(folders)
-def sendSaveName(idSave):
-    global filesSaves
-    return(filesSaves[idSave])
 
 def analSaves():
     filesSaves=listSaves(); 

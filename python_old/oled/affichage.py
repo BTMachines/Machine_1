@@ -3,8 +3,6 @@ import time
 
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_SSD1306
-from analyse import *
-
 
 from PIL import Image
 from PIL import ImageDraw
@@ -48,9 +46,7 @@ playTitle="paused"
 
 
 
-def affSaveMenu(inventory):
-    
-    name=inventory["saveName"]
+def affSaveMenu(name):
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=255)
     draw.text((10,10),"save menu",  font=font, fill=0)
@@ -58,9 +54,7 @@ def affSaveMenu(inventory):
     disp.image(image)
     disp.display()
     
-def affLoadMenu(inventory):
-    
-    name=filesSaves[inventory["lastLoadId"]]
+def affLoadMenu(name):
     nakedname=name[:-4]
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=255)
@@ -70,12 +64,7 @@ def affLoadMenu(inventory):
     disp.display()
     
 
-def affMainMenu(inventory):
-    
-    print("mainMenu")
-    bpm=inventory["lastBpm"]
-    play=inventory["isPlaying"]
-    master=inventory["lastMasterVol"]
+def affMainMenu(bpm, play,master):
     
     if play==1:
         playTitle="Playing"
@@ -90,26 +79,19 @@ def affMainMenu(inventory):
     #font = ImageFont.load_default()
     draw.text((2,0),"BTM_1",  font=font, fill=0)
     draw.text((0,20),playTitle,  font=font, fill=255)
-    draw.text((0,35),"master:"+(str(master))+"%",  font=font, fill=255)
-    draw.text((0,50),"bpm:"+str(round(bpm)),  font=font, fill=255)
+    draw.text((0,35),"bpm:"+str(round(bpm)),  font=font, fill=255)
+    draw.text((0,50),"master:"+(str(master))+"%",  font=font, fill=255)
 
     disp.image(image)
     disp.display()
     
-def affRackMenu(inventory):
+def affRackMenu(idRack,listMute,kitName,mode,vol):
     
-    
-    idRack=inventory["lastIdRack"]-1
-    kitName=folders[inventory["lastKit"][idRack]]
-    listMute=inventory["list_rack_mute"]
-    mode=inventory["mode"]
-    vol= inventory["master_rack"][idRack]
-        
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)   
-    draw.text((0,0),"Racks: "+str(idRack+1),  font=font, fill=255)
-    draw.text((0,37),"vol: "+str(vol)+"%",  font=font, fill=255)
-    draw.text((0,55),"kit: "+kitName,  font=font, fill=255)
+    draw.text((0,0),"Racks: "+str(idRack),  font=font, fill=255)
+    draw.text((0,37),"kit: "+kitName,  font=font, fill=255)
+    draw.text((0,55),"vol: "+str(vol)+"%",  font=font, fill=255)
 
     if mode==1:
         draw.rectangle((107,0,117,10), outline=0, fill=255)
@@ -122,7 +104,7 @@ def affRackMenu(inventory):
         while i<4: 
             draw.text((i*carre2_width,marge_top+j*carre2_height-1),str(idCount+1),  font=font, fill=255)
 
-            if idCount==idRack:
+            if idCount==idRack-1:
                 draw.rectangle((i*carre2_width+15,marge_top+j*carre2_height,i*carre2_width+12,marge_top+j*carre2_height+carre2_size), outline=255, fill=255) #center 
 
             if listMute[idCount]==False:
@@ -137,22 +119,11 @@ def affRackMenu(inventory):
     disp.display()
     
 
-def affTrackMenu(inventory):
-    
-    idRack=inventory["lastIdRack"]-1
-    idInstru=inventory["lastIdInstru"]-1 
-    kitName=folders[inventory["lastKit"][idRack]]
-    fileNames=finalFilesNames
-    listMute=inventory["list_mute"][idRack]
-    mode=inventory["mode"]
-    vol= inventory["list_vol"][idRack][idInstru]
-    beginEnd= inventory["list_mesure"][idRack][idInstru]
-
-
+def affTrackMenu(kitName,idRack,fileNames,idInstru,listMute,mode,vol,beginEnd):
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     #font = ImageFont.load_default()
-    draw.text((0,0),str(idRack+1)+":"+kitName+": "+fileNames[idRack][idInstru],  font=font, fill=255)
+    draw.text((0,0),str(idRack)+":"+kitName+": "+fileNames[idRack-1][idInstru-1],  font=font, fill=255)
     draw.text((0,55),"vol:"+str(round(vol*100))+"%",  font=font, fill=255)
     draw.text((64,55),"mesure:"+str(round(beginEnd[1]/4)),  font=font, fill=255)
     if mode==1:
@@ -171,7 +142,7 @@ def affTrackMenu(inventory):
         while i<4: 
             draw.text((i*carre2_width,marge_top+j*carre2_height-1),str(idCount+1),  font=font, fill=255)
 
-            if idCount==idInstru:
+            if idCount==idInstru-1:
                 draw.rectangle((i*carre2_width+15,marge_top+j*carre2_height,i*carre2_width+12,marge_top+j*carre2_height+carre2_size), outline=255, fill=255) #center 
 
             if listMute[idCount]==False:
@@ -185,21 +156,13 @@ def affTrackMenu(inventory):
     disp.image(image)
     disp.display()
 
-def affSeq(inventory):
+def affSeq(idRack,idInstru,nameInstru,idPas,pas,listVelo,vol,beginEnd):
 
-    idRack= inventory["lastIdRack"]-1
-    idInstru= inventory["lastIdInstru"]-1
-    nameInstru= finalFilesNames[idRack]
-    idPas= inventory["lastIdPas"]
-    pas= inventory["lastPas"]
-    listVelo= inventory["list_velos"][idRack][idInstru]
-    vol= inventory["list_vol"][idRack][idInstru]
-    beginEnd= inventory["list_mesure"][idRack][idInstru]
 
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     #font = ImageFont.load_default()
-    draw.text((0,0),str(idInstru+1)+" / "+nameInstru[idInstru],  font=font, fill=255)
+    draw.text((0,0),str(idInstru)+" / "+nameInstru[idInstru-1],  font=font, fill=255)
     #draw.text((30,0),str(round(idPas)),  font=font, fill=255)
     draw.rectangle((96,0,123,10), outline=0, fill=255)
     draw.text((98,0),str(round(listVelo[idPas]*100))+"%",  font=font, fill=0)
