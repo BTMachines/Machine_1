@@ -1,4 +1,4 @@
-#N canvas 182 205 499 291 10;
+#N canvas 181 205 499 291 10;
 #X obj 132 48 this_is_a_masta_key_selector;
 #X obj 183 158 outlet;
 #X obj 233 184 outlet;
@@ -9,16 +9,8 @@
 #X obj 233 160 receive idPas;
 #X obj 283 184 receive velo;
 #X obj 132 80 Menus;
-#X obj 15 177 print navIdPas;
-#X obj 13 128 print navIdRack;
-#X obj 5 152 print navIdInstru;
-#X obj 15 201 print navVelo;
 #X connect 0 0 9 0;
 #X connect 4 0 5 0;
-#X connect 4 0 11 0;
 #X connect 6 0 1 0;
-#X connect 6 0 12 0;
 #X connect 7 0 2 0;
-#X connect 7 0 10 0;
 #X connect 8 0 3 0;
-#X connect 8 0 13 0;

@@ -1,9 +1,9 @@
-#N canvas 68 246 807 687 10;
+#N canvas 67 246 807 687 10;
 #X obj 88 211 send to_osc;
 #X msg 109 180 set validLoad;
 #X obj 58 57 inlet;
-#X msg 58 245 0;
-#X obj 58 278 send idM;
+#X msg 58 385 0;
+#X obj 58 418 send idM;
 #X obj 58 94 route 0 4 13 14, f 18;
 #X obj 151 402 0;
 #X msg 151 451 0;
@@ -29,6 +29,7 @@
 #X connect 1 0 0 0;
 #X connect 2 0 5 0;
 #X connect 3 0 4 0;
+#X connect 3 0 6 0;
 #X connect 5 0 3 0;
 #X connect 5 1 1 0;
 #X connect 5 1 0 0;

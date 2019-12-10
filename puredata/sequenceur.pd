@@ -1,7 +1,7 @@
-#N canvas 0 71 1024 697 10;
+#N canvas 2 71 563 697 10;
 #X obj 79 268 metro;
 #X floatatom 160 182 5 0 0 0 - - -, f 5;
-#X obj 79 151 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 79 151 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X text 206 77 bpm;
 #X obj 106 196 /;
