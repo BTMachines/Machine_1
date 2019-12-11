@@ -1,4 +1,4 @@
-#N canvas 351 73 892 693 10;
+#N canvas 496 154 892 693 10;
 #X obj 216 246 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 216 326 +;
@@ -6,25 +6,25 @@
 #X msg 249 229 -1;
 #X floatatom 216 449 5 0 0 0 - - -, f 5;
 #X msg 246 395 1;
-#X floatatom 382 300 5 0 0 0 - - -, f 5;
-#X msg 344 389 1;
-#X msg 363 389 0;
+#X floatatom 384 300 5 0 0 0 - - -, f 5;
+#X msg 346 389 1;
+#X msg 365 389 0;
 #X floatatom 168 342 5 0 0 0 - - -, f 5;
 #X obj 216 270 1;
-#X obj 433 338 send to_osc;
-#X msg 433 314 set idPas;
+#X obj 435 338 send to_osc;
+#X msg 435 314 set idPas;
 #X obj 262 48 inlet;
 #X obj 216 367 route 0 13;
 #X msg 216 395 12;
-#X obj 382 268 key_to_pas, f 14;
-#X obj 497 230 track_vol, f 3;
-#X obj 535 283 begin_mesure, f 3;
-#X obj 573 253 lenght_mesure, f 3;
+#X obj 384 268 key_to_pas, f 14;
+#X obj 498 230 track_vol, f 3;
+#X obj 536 231 begin_mesure, f 3;
+#X obj 574 232 lenght_mesure, f 3;
 #X msg 330 463 0;
 #X obj 308 190 route 1 2 3 4 15 16 11 12 7 8 5 6 13 14 9 10;
 #X obj 330 588 send resetPas;
 #X obj 216 506 send idInstru;
-#X obj 382 522 send idPas;
+#X obj 384 522 send idPas;
 #X obj 616 406 send velo;
 #X obj 262 140 send idM;
 #X obj 262 90 route 0;
@@ -34,9 +34,9 @@
 #X obj 144 559 send to_osc;
 #X msg 144 535 set idInstru;
 #X msg 106 432 1;
-#X obj 396 371 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 398 371 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 396 371 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 398 371 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 330 553 delay 1;
 #X floatatom 216 486 5 0 0 0 - - -, f 5;
@@ -47,7 +47,6 @@
 #X connect 2 0 0 0;
 #X connect 3 0 1 1;
 #X connect 3 0 0 0;
-#X connect 4 0 10 1;
 #X connect 4 0 20 0;
 #X connect 4 0 37 0;
 #X connect 5 0 4 0;
@@ -93,3 +92,4 @@
 #X connect 37 0 23 0;
 #X connect 37 0 32 0;
 #X connect 37 0 31 0;
+#X connect 37 0 10 1;

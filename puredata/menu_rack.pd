@@ -32,6 +32,8 @@
 #X msg 58 101 0;
 #X msg 109 101 2;
 #X obj 58 64 route 0 4, f 15;
+#X msg 109 336 1;
+#X obj 109 375 send idInstruFrom;
 #X connect 0 0 3 0;
 #X connect 0 0 5 0;
 #X connect 0 0 4 0;
@@ -61,7 +63,9 @@
 #X connect 24 0 28 0;
 #X connect 26 0 25 0;
 #X connect 27 0 25 0;
+#X connect 27 0 29 0;
 #X connect 28 0 26 0;
 #X connect 28 1 27 0;
 #X connect 28 2 20 0;
 #X connect 28 2 1 0;
+#X connect 29 0 30 0;
