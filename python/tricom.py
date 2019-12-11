@@ -6,7 +6,7 @@ inventaire={}
 	
 def triCom(inventory,address, *args):
 	
-	print("tricom: ",address,*args)
+	#print("tricom: ",address,*args)
 	global inventaire
 	cmdReceiveInventory(inventory);
 	inventaire=inventory
@@ -16,7 +16,7 @@ def triCom(inventory,address, *args):
 	if(address=="/validSave"):
 		saveSet()
 	if(address=="/validLoad"):
-		loadSet()
+		inventaire=loadSet()
 	if(address=="/velo"):
 		inventaire=tri_velo(idRack,idInstru,idPas,args)
 	if(address=="/muteId"):

@@ -4,7 +4,7 @@ import time
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_SSD1306
 from analyse import *
-
+from list_repository import *
 
 from PIL import Image
 from PIL import ImageDraw
@@ -59,13 +59,12 @@ def affSaveMenu(inventory):
     disp.display()
     
 def affLoadMenu(inventory):
-    
+    fileSaves=listSaves()
     name=filesSaves[inventory["lastLoadId"]]
-    nakedname=name[:-4]
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=255)
     draw.text((10,10),"load menu",  font=font, fill=0)
-    draw.text((10,30),"name:"+nakedname,  font=font, fill=0)
+    draw.text((10,30),"name:"+name,  font=font, fill=0)
     disp.image(image)
     disp.display()
     

@@ -1,4 +1,4 @@
-#N canvas 156 97 1461 555 10;
+#N canvas 2 97 1265 555 10;
 #X obj 49 355 inlet;
 #X obj 526 395 menu_tracks;
 #X obj 170 394 menu_main;
@@ -39,8 +39,6 @@
 #X obj 181 300 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 757 421 send resetPas;
-#X obj 1113 453 send to_osc;
-#X msg 1113 418 set askSaves;
 #X connect 0 0 27 0;
 #X connect 0 0 28 0;
 #X connect 0 0 29 0;
@@ -72,8 +70,6 @@
 #X connect 19 0 31 1;
 #X connect 20 0 27 1;
 #X connect 21 0 32 1;
-#X connect 21 0 38 0;
-#X connect 21 0 37 0;
 #X connect 22 0 27 1;
 #X connect 23 0 12 0;
 #X connect 23 0 11 0;
@@ -95,4 +91,3 @@
 #X connect 30 0 26 0;
 #X connect 31 0 4 0;
 #X connect 32 0 5 0;
-#X connect 38 0 37 0;

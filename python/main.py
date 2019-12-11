@@ -4,7 +4,6 @@ from analyse import *
 from commandes import *
 from tricom import *
 from oled.affichage import *
-import datetime
 
 
 inventaire={
