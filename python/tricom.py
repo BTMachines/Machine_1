@@ -28,6 +28,8 @@ def triCom(inventory,address, *args):
 	if(address=="/clearRack"):
 		inventaire=clear_rack_velo(idRack)
 	if(address=="/idMenu"):
+		if (round(args[0])==-2):
+			analSaves()
 		inventaire["lastIdMenu"]=round(args[0])
 	if(address=="/idRack"):
 		inventaire["lastIdRack"]=round(args[0])
@@ -62,4 +64,7 @@ def triCom(inventory,address, *args):
 		analFolders()
 	if(address=="/askSaves"):
 		analSaves()
+	if(address=="/askRec"):
+		inventaire["recIsOn"]=askRec();
+		print(inventaire["recIsOn"])
 	return(inventaire)

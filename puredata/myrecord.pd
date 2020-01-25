@@ -1,0 +1,32 @@
+#N canvas 216 204 565 428 10;
+#X msg 243 307 start;
+#X msg 344 350 stop;
+#X obj 135 367 writesf~ 2;
+#X obj 136 247 inlet~;
+#X obj 243 59 receive dateForRec;
+#X obj 374 313 receive recOff;
+#X obj 243 260 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 243 282 delay 1;
+#X obj 344 330 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 243 129 list;
+#X obj 243 108 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 243 164 route list;
+#X obj 401 181 print myrecord;
+#X connect 0 0 2 0;
+#X connect 1 0 2 0;
+#X connect 3 0 2 0;
+#X connect 3 0 2 1;
+#X connect 4 0 9 1;
+#X connect 4 0 10 0;
+#X connect 5 0 8 0;
+#X connect 6 0 7 0;
+#X connect 7 0 0 0;
+#X connect 8 0 1 0;
+#X connect 9 0 11 0;
+#X connect 10 0 9 0;
+#X connect 11 0 2 0;
+#X connect 11 0 6 0;
+#X connect 11 0 12 0;

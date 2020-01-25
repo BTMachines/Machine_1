@@ -1,1 +1,14 @@
-#N canvas 2 73 450 300 10;
+#N canvas 276 123 990 663 10;
+#X obj 146 242 textfile;
+#X msg 225 80 add cis boom bah;
+#X msg 305 117 clear;
+#X msg 284 158 write /home/pi/Bureau/BTMachines_git/Machine_1/saves/puredata/textfile.txt
+, f 77;
+#X msg 387 284 write /tmp/textfile.txt;
+#X msg 305 207 read /home/pi/Bureau/BTMachines_git/Machine_1/saves/puredata/textfile.txt
+cr, f 77;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 0;

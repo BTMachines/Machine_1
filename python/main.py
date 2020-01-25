@@ -7,7 +7,7 @@ from oled.affichage import *
 
 
 inventaire={
-    "chemin":"/home/pi/Bureau/BTMachines_git/Machine_1/saves/",
+    "chemin":"/home/pi/Bureau/BTMachines_git/Machine_1/saves/python/",
     "saveName":"default",
     "lastIdInstru":1,
     "lastIdRack":1,
@@ -28,8 +28,14 @@ inventaire={
     "list_mute":[],
     "list_rack_mute":[],
     "master_rack":[],
+    "recIsOn":False
     }
     
+def updateInventaire(inventory):
+    global inventaire
+    inventaire=inventory
+    
+
 
 def initParams():
     global inventaire
@@ -66,7 +72,7 @@ def initParams():
 
 def default_handler(address, *args):
     global inventaire
-    print("default_handler: ",address,*args)
+    #print("default_handler: ",address,*args)
     inventaire=triCom(inventaire,address,*args)
 
     if inventaire["lastIdMenu"]==3:

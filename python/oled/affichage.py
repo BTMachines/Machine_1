@@ -60,6 +60,8 @@ def affSaveMenu(inventory):
     
 def affLoadMenu(inventory):
     fileSaves=listSaves()
+    print("affloadMenu/lastIdLoad:",inventory["lastLoadId"])
+    print("filesSaves:",fileSaves)
     name=filesSaves[inventory["lastLoadId"]]
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=255)
@@ -71,10 +73,10 @@ def affLoadMenu(inventory):
 
 def affMainMenu(inventory):
     
-    print("mainMenu")
     bpm=inventory["lastBpm"]
     play=inventory["isPlaying"]
     master=inventory["lastMasterVol"]
+    recOn=inventory["recIsOn"]
     
     if play==1:
         playTitle="Playing"
@@ -85,6 +87,10 @@ def affMainMenu(inventory):
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     draw.rectangle((0,0,34,12), outline=0, fill=255)
+    
+    if recOn==True:
+        draw.rectangle((117,0,127,12), outline=0, fill=255)
+
 
     #font = ImageFont.load_default()
     draw.text((2,0),"BTM_1",  font=font, fill=0)

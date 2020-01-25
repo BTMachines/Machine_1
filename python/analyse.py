@@ -22,6 +22,24 @@ while j<4:
 def sendSaveName(idSave):
     global filesSaves
     return(filesSaves[idSave])
+    
+def sendRecDate(myDate):
+    addr="/currentDate"
+    msg = osc_message_builder.OscMessageBuilder(address=addr)
+    msg.add_arg("open")
+    msg.add_arg(myDate)
+    print("myDate:",myDate)
+    msg = msg.build()
+    client.send(msg)
+    
+def sendRecOff():
+    addr="/recOff"
+    msg = osc_message_builder.OscMessageBuilder(address=addr)
+    msg.add_arg("isOff")
+    print("recOff")
+    msg = msg.build()
+    client.send(msg)
+
 
 def analSaves():
     filesSaves=listSaves(); 

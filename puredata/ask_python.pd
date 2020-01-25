@@ -1,4 +1,4 @@
-#N canvas 52 223 583 584 10;
+#N canvas 48 223 973 587 10;
 #X obj 162 146 send to_osc;
 #X obj 78 284 oscparse;
 #X obj 78 251 netreceive -u -b;
@@ -14,19 +14,22 @@
 #X obj 402 55 loadbang;
 #X obj 402 90 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 196 394 send folderL;
+#X obj 188 399 send folderL;
 #X obj 162 76 receive idFolder;
-#X obj 432 393 print fileName;
+#X obj 628 419 print fileName;
 #X obj 311 98 print;
 #X msg 311 72 BTM start;
-#X obj 78 366 route fileName folderLength folderSaveLength, f 51;
-#X obj 314 393 send folderSaveL;
+#X obj 298 439 send folderSaveL;
+#X obj 408 409 send dateForRec;
+#X obj 78 366 route fileName folderLength folderSaveLength currentDate
+recOff, f 79;
+#X obj 518 460 send recOff;
 #X connect 1 0 7 0;
 #X connect 2 0 1 0;
 #X connect 3 0 2 0;
 #X connect 4 0 3 0;
 #X connect 5 0 3 0;
-#X connect 7 0 18 0;
+#X connect 7 0 20 0;
 #X connect 8 0 0 0;
 #X connect 10 0 9 0;
 #X connect 11 0 12 0;
@@ -36,7 +39,9 @@
 #X connect 14 0 8 0;
 #X connect 14 0 0 0;
 #X connect 17 0 16 0;
-#X connect 18 0 6 0;
-#X connect 18 1 13 0;
-#X connect 18 2 19 0;
-#X connect 18 3 15 0;
+#X connect 20 0 6 0;
+#X connect 20 1 13 0;
+#X connect 20 2 18 0;
+#X connect 20 3 19 0;
+#X connect 20 4 21 0;
+#X connect 20 5 15 0;

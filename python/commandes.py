@@ -1,5 +1,4 @@
 from analyse import *
-
 import datetime
 import pickle
 
@@ -56,6 +55,7 @@ def saveSet():
         mon_pickler=pickle.Pickler(fichier)
         mon_pickler.dump(inventaire)
     
+    
 def tri_load(arg):
     #print("trivelo",arguments)
     global inventaire
@@ -84,4 +84,15 @@ def tri_velo(rack,instru,pas,arguments):
     return inventaire 
     #print(list_velos[lastIdInstru])
 
+def askRec():
+    global inventaire
+    print("askRec")
+    date = datetime.datetime.now()
+    if inventaire["recIsOn"]==False:
+        sendRecDate('/home/pi/Bureau/BTMachines_git/Records/'+str(date.day)+str(date.month)+str(date.year)[2:]+'-'+str(date.hour)+str(date.minute)+str(date.second)+'.wav')
+        return True
+    elif inventaire["recIsOn"]==True:
+        sendRecOff()
+        return False
+    
 
