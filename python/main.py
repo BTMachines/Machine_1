@@ -14,7 +14,7 @@ inventaire={
     "lastIdPas":0,
     "lastPas":0,
     "lastIdMenu":0,
-    "lastBpm":0,
+    "lastBpm":120,
     "isPlaying":0,
     "nbPlayers":12,
     "nbRack":4,

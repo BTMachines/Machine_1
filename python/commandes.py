@@ -4,6 +4,10 @@ import pickle
 
 inventaire={}
 
+def cmdReceiveInventory(inventory):
+    global inventaire
+    inventaire=inventory
+
 
 def clear_velo(rack,instru):
     global inventaire
@@ -31,9 +35,6 @@ def clear_rack_velo(rack):
         i=0
     return inventaire
 
-def cmdReceiveInventory(inventory):
-    global inventaire
-    inventaire=inventory
     
 def loadSet():
     global inventaire
@@ -54,6 +55,8 @@ def saveSet():
     with open(name,'wb') as fichier:
         mon_pickler=pickle.Pickler(fichier)
         mon_pickler.dump(inventaire)
+    inventaire["lastLoadId"]=0
+    return inventaire
     
     
 def tri_load(arg):

@@ -26,6 +26,11 @@
 #X obj 337 99 receive muteRackBang;
 #X obj 355 122 receive idRack;
 #X msg 444 176 set muteRackId;
+#X obj 700 142 receive loadRackMute;
+#X obj 700 196 route 0 1 2 3;
+#X floatatom 736 276 5 0 0 0 - - -, f 5;
+#X obj 753 247 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
 #X connect 0 0 4 0;
 #X connect 1 0 6 0;
 #X connect 2 0 7 0;
@@ -54,3 +59,10 @@
 #X connect 20 0 9 1;
 #X connect 20 0 11 0;
 #X connect 21 0 16 0;
+#X connect 22 0 23 0;
+#X connect 23 0 12 0;
+#X connect 23 0 24 0;
+#X connect 23 0 25 0;
+#X connect 23 1 13 0;
+#X connect 23 2 14 0;
+#X connect 23 3 15 0;

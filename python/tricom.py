@@ -2,21 +2,20 @@ from analyse import *
 from commandes import *
 #from main import *
 
-inventaire={}
 	
 def triCom(inventory,address, *args):
 	
 	#print("tricom: ",address,*args)
-	global inventaire
-	cmdReceiveInventory(inventory);
+	inventaire={}
 	inventaire=inventory
 	idRack=inventaire["lastIdRack"]-1
 	idInstru=inventaire["lastIdInstru"]-1
 	idPas=inventaire["lastIdPas"]
 	if(address=="/validSave"):
-		saveSet()
+		inventaire=saveSet()
 	if(address=="/validLoad"):
 		inventaire=loadSet()
+		setReload(inventaire)
 	if(address=="/velo"):
 		inventaire=tri_velo(idRack,idInstru,idPas,args)
 	if(address=="/muteId"):
@@ -67,4 +66,5 @@ def triCom(inventory,address, *args):
 	if(address=="/askRec"):
 		inventaire["recIsOn"]=askRec();
 		print(inventaire["recIsOn"])
+	cmdReceiveInventory(inventaire);
 	return(inventaire)

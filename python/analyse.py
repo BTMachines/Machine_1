@@ -20,7 +20,9 @@ while j<4:
 
 #print(folders)
 def sendSaveName(idSave):
+    print("idSave : =>",idSave)
     global filesSaves
+    filesSaves=listSaves();
     return(filesSaves[idSave])
     
 def sendRecDate(myDate):
@@ -82,3 +84,74 @@ def analFiles(idRack,idFolder):
         client.send(msg)
         i+=1
     #print("final:",finalFilesNames)
+    
+def setReload(inventory):
+    addr="/myload"
+    for cle,valeur in inventory.items():
+        print(cle,type(valeur))
+        if type(valeur)==int:
+            #print (cle, valeur)
+            msg = osc_message_builder.OscMessageBuilder(address=addr)
+            msg.add_arg(cle)
+            msg.add_arg(valeur)
+            msg = msg.build()
+            client.send(msg)
+        elif type(valeur)==bool:
+            msg = osc_message_builder.OscMessageBuilder(address=addr)
+            msg.add_arg(cle)
+            if valeur==True:
+                msg.add_arg(0)
+            else:
+                msg.add_arg(1)
+            msg = msg.build()
+            client.send(msg)
+        elif type(valeur)==list:
+            i=0
+            while i<len(valeur):
+                if type(valeur[i])==int :
+                    #print (cle,i,valeur[i])
+                    msg = osc_message_builder.OscMessageBuilder(address=addr)
+                    msg.add_arg(cle)
+                    msg.add_arg(i)
+                    msg.add_arg(valeur[i])
+                    msg = msg.build()
+                    client.send(msg)
+                elif type(valeur[i])==bool:
+                    msg = osc_message_builder.OscMessageBuilder(address=addr)
+                    msg.add_arg(cle)
+                    msg.add_arg(i)
+                    if valeur[i]==True:
+                        msg.add_arg(0)
+                    else:
+                        msg.add_arg(1)
+                    msg = msg.build()
+                    client.send(msg)
+                elif type(valeur[i])==list:
+                    j=0
+                    while j<len(valeur[i]):
+                        #print (cle,i,j,valeur[i][j])
+                        msg = osc_message_builder.OscMessageBuilder(address=addr)
+                        msg.add_arg(cle)
+                        msg.add_arg(i)
+                        msg.add_arg(j)
+
+                        if type(valeur[i][j])==int:
+                            msg.add_arg(valeur[i][j])
+                            #print (cle,i,j,valeur[i][j])
+                        elif type(valeur[i][j])==bool:
+                            if valeur[i][j]==True:
+                                msg.add_arg(0)
+                            else:
+                                msg.add_arg(1)
+                        elif type(valeur[i][j])==list:
+                            k=0
+                            while k<len(valeur[i][j]):
+                                #print (cle,i,j,k,valeur[i][j][k])
+                                msg.add_arg(valeur[i][j][k])
+                                k+=1
+                            
+                        msg = msg.build()
+                        client.send(msg)
+                        j+=1
+                i+=1
+

@@ -62,7 +62,8 @@ def affLoadMenu(inventory):
     fileSaves=listSaves()
     print("affloadMenu/lastIdLoad:",inventory["lastLoadId"])
     print("filesSaves:",fileSaves)
-    name=filesSaves[inventory["lastLoadId"]]
+    name=fileSaves[inventory["lastLoadId"]]
+    print("name :",name)
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=255)
     draw.text((10,10),"load menu",  font=font, fill=0)

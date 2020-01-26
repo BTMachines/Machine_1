@@ -1,4 +1,4 @@
-#N canvas 296 105 807 687 10;
+#N canvas 295 105 807 687 10;
 #X obj 88 211 send to_osc;
 #X msg 109 180 set validLoad;
 #X obj 58 57 inlet;
@@ -26,6 +26,7 @@
 #X obj 151 360 + 1;
 #X obj 235 491 - 1;
 #X msg 197 572 0;
+#X floatatom 324 494 5 0 0 0 - - -, f 5;
 #X connect 1 0 0 0;
 #X connect 2 0 5 0;
 #X connect 3 0 4 0;
@@ -43,6 +44,7 @@
 #X connect 13 0 22 0;
 #X connect 14 0 23 0;
 #X connect 14 0 16 1;
+#X connect 14 0 25 0;
 #X connect 15 0 7 0;
 #X connect 15 1 8 0;
 #X connect 16 0 18 0;
