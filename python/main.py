@@ -7,7 +7,7 @@ from oled.affichage import *
 
 
 inventaire={
-    "chemin":"/home/pi/Bureau/BTMachines_git/Machine_1/saves/python/",
+    "chemin":"/home/pi/Bureau/BTMachines_git/Machine_1/saves/",
     "saveName":"default",
     "lastIdInstru":1,
     "lastIdRack":1,

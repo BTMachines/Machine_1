@@ -1,16 +1,27 @@
-#N canvas 559 88 674 462 10;
+#N canvas 273 456 674 462 10;
 #X obj 73 48 receive myload;
-#X obj 73 80 route list_rack_mute list_mute lastBpm lastPas master_rack
+#X obj 74 160 send loadRackMute;
+#X obj 98 182 send loadMute;
+#X obj 123 204 send loadBpm;
+#X obj 222 283 velocityReload;
+#X obj 444 168 send playPause;
+#X obj 172 242 rackMasterReload;
+#X obj 321 202 / 100;
+#X obj 321 228 send MasterVol;
+#X obj 469 271 listVolReload;
+#X obj 74 79 route list_rack_mute list_mute lastBpm lastPas master_rack
 lastIdPas list_velos recIsOn mode lastKit lastMasterVol lastIdMenu
-lastIdInstru lastIdRack lastLoadId isPlaying;
-#X obj 73 136 send loadRackMute;
-#X obj 98 158 send loadMute;
-#X obj 123 180 send loadBpm;
-#X obj 224 337 print listVelo;
-#X obj 252 294 send loadVelo;
-#X connect 0 0 1 0;
-#X connect 1 0 2 0;
-#X connect 1 1 3 0;
-#X connect 1 2 4 0;
-#X connect 1 6 5 0;
-#X connect 1 6 6 0;
+lastIdInstru lastIdRack lastLoadId isPlaying list_vol list_mesure,
+f 64;
+#X obj 495 211 mesureReload;
+#X connect 0 0 10 0;
+#X connect 7 0 8 0;
+#X connect 10 0 1 0;
+#X connect 10 1 2 0;
+#X connect 10 2 3 0;
+#X connect 10 4 6 0;
+#X connect 10 6 4 0;
+#X connect 10 10 7 0;
+#X connect 10 15 5 0;
+#X connect 10 16 9 0;
+#X connect 10 17 11 0;

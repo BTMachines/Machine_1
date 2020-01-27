@@ -16,6 +16,6 @@ def listFiles(fileTo):
 
 def listSaves():
 
-	path = "/home/pi/Bureau/BTMachines_git/Machine_1/saves/python/"
+	path = "/home/pi/Bureau/BTMachines_git/Machine_1/saves/"
 	dirs = os.listdir( path )
 	return dirs

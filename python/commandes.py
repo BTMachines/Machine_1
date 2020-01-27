@@ -49,7 +49,7 @@ def loadSet():
 def saveSet():
     global inventaire
     date = datetime.datetime.now()
-    saveName=inventaire["saveName"]=str(date.day)+str(date.month)+str(date.year)[2:]+'-'+str(date.hour)+str(date.minute)+str(date.second)
+    saveName=inventaire["saveName"]=str(date.hour)+","+str(date.minute)+","+str(date.second)+'-'+str(date.day)+","+str(date.month)+","+str(date.year)[2:]
     print(saveName)
     name=inventaire["chemin"]+saveName
     with open(name,'wb') as fichier:
