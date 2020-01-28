@@ -1,11 +1,11 @@
-#N canvas 124 146 466 567 10;
-#X obj 53 94 inlet;
-#X obj 53 131 select 0 1;
-#X msg 152 47 1;
-#X msg 102 41 0;
+#N canvas 123 146 466 567 10;
+#X obj 53 64 inlet;
+#X obj 53 101 select 0 1;
+#X msg 152 17 1;
+#X msg 102 11 0;
 #X obj 199 148 tabread rack_master;
-#X obj 199 96 receive idRack;
-#X obj 199 122 f;
+#X obj 199 66 receive idRack;
+#X obj 199 92 f;
 #X obj 53 165 f;
 #X obj 86 165 f;
 #X obj 53 196 - 0.1;
@@ -23,6 +23,7 @@
 #X obj 143 465 send to_osc;
 #X msg 143 441 set masterRack;
 #X obj 53 503 send changeRackMaster;
+#X obj 199 119 - 1;
 #X connect 0 0 1 0;
 #X connect 1 0 7 0;
 #X connect 1 1 8 0;
@@ -31,8 +32,7 @@
 #X connect 4 0 8 1;
 #X connect 4 0 7 1;
 #X connect 5 0 6 0;
-#X connect 6 0 4 0;
-#X connect 6 0 17 1;
+#X connect 6 0 23 0;
 #X connect 7 0 9 0;
 #X connect 8 0 10 0;
 #X connect 9 0 11 0;
@@ -52,3 +52,5 @@
 #X connect 19 0 6 0;
 #X connect 19 0 22 0;
 #X connect 21 0 20 0;
+#X connect 23 0 4 0;
+#X connect 23 0 17 1;

@@ -1,5 +1,5 @@
-#N canvas 441 201 563 712 10;
-#X obj 203 107 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#N canvas 438 201 563 494 10;
+#X obj 203 107 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X floatatom 203 156 5 0 0 0 - - -, f 5;
 #X floatatom 270 107 5 0 0 0 - - -, f 5;
@@ -23,12 +23,6 @@
 #X obj 66 262 loadbox;
 #X obj 202 324 *~ 0.5;
 #X obj 201 358 *~ 2;
-#X text 37 465 les RackVol ne sont pas pris en compte lors du reload
-;
-#X text 37 486 les volumes ne sont pas pris en compte lors du reload
-;
-#X text 36 510 les begin & end mesures ne sont pas pris en compte lors
-du reload, f 66;
 #X connect 0 0 12 0;
 #X connect 0 0 13 0;
 #X connect 0 0 14 0;

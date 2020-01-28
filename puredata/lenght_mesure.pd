@@ -1,4 +1,4 @@
-#N canvas 29 109 916 610 10;
+#N canvas 28 109 916 610 10;
 #X obj 368 35 inlet;
 #X obj 414 35 inlet;
 #X obj 153 128 receive idInstru;
@@ -38,11 +38,11 @@
 #X msg 368 246 64;
 #X obj 414 245 moses 65;
 #X obj 85 375 pack f f f f, f 15;
+#X obj 180 178 - 1;
 #X connect 0 0 20 0;
 #X connect 1 0 21 0;
-#X connect 2 0 12 0;
-#X connect 2 0 13 1;
 #X connect 2 0 35 2;
+#X connect 2 0 36 0;
 #X connect 3 0 28 0;
 #X connect 3 0 35 1;
 #X connect 5 0 7 1;
@@ -86,3 +86,5 @@
 #X connect 34 0 17 0;
 #X connect 34 1 26 0;
 #X connect 35 0 15 0;
+#X connect 36 0 12 0;
+#X connect 36 0 13 1;

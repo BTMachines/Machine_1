@@ -109,8 +109,9 @@ def setReload(inventory):
             print(cle,type(valeur))
             i=0
             while i<len(valeur):
+                print (cle,i,type(valeur[i]))
+
                 if type(valeur[i])==int or type(valeur[i])==float:
-                    #print (cle,i,valeur[i])
                     msg = osc_message_builder.OscMessageBuilder(address=addr)
                     msg.add_arg(cle)
                     msg.add_arg(i)

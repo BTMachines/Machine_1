@@ -1,4 +1,4 @@
-#N canvas 405 229 718 467 10;
+#N canvas 480 331 718 467 10;
 #X obj 88 39 inlet;
 #X obj 88 129 + 1;
 #X obj 88 391 tabwrite;
@@ -12,10 +12,14 @@
 #X msg 232 204 set %d_end_mesure;
 #X obj 88 246 makefilename;
 #X msg 88 269 set \$1;
-#X obj 388 392 send changeBeginMesure;
-#X obj 388 359 send changeEndMesure;
-#X obj 252 336 delay 1;
-#X obj 388 332 pack f f f;
+#X obj 202 400 send changeBeginMesure;
+#X obj 202 368 delay 1;
+#X obj 232 302 delay 1;
+#X obj 232 334 send changeEndMesure;
+#X obj 232 274 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 202 339 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
 #X connect 0 0 3 0;
 #X connect 1 0 10 0;
 #X connect 3 0 1 0;
@@ -28,10 +32,14 @@
 #X connect 6 0 2 1;
 #X connect 7 0 6 0;
 #X connect 7 0 5 0;
-#X connect 7 0 14 0;
 #X connect 8 0 10 0;
+#X connect 8 0 17 0;
 #X connect 9 0 10 0;
+#X connect 9 0 16 0;
 #X connect 10 0 11 0;
 #X connect 11 0 2 0;
 #X connect 11 0 7 0;
-#X connect 15 0 13 0;
+#X connect 13 0 12 0;
+#X connect 14 0 15 0;
+#X connect 16 0 14 0;
+#X connect 17 0 13 0;

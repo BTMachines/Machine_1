@@ -1,4 +1,4 @@
-#N canvas 507 273 655 402 10;
+#N canvas 566 102 655 402 10;
 #X obj 69 48 inlet;
 #X obj 61 334 tabwrite rack_master;
 #X obj 188 65 print rmr0;
@@ -14,10 +14,13 @@
 -1 -1;
 #X obj 136 151 / 100;
 #X msg 527 152 5;
-#X obj 69 150 + 1;
 #X text 339 125 debug;
+#X obj 235 333 send loadRackMaster;
+#X obj 235 306 delay 1;
+#X obj 69 211 + 1;
 #X connect 0 0 3 0;
-#X connect 3 0 14 0;
+#X connect 3 0 16 0;
+#X connect 3 0 17 0;
 #X connect 3 1 12 0;
 #X connect 4 0 5 0;
 #X connect 4 0 11 0;
@@ -28,4 +31,5 @@
 #X connect 10 0 4 0;
 #X connect 12 0 1 0;
 #X connect 13 0 4 0;
-#X connect 14 0 1 1;
+#X connect 16 0 15 0;
+#X connect 17 0 1 1;
