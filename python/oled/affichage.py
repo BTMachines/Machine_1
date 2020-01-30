@@ -73,6 +73,14 @@ def affLoadMenu(inventory):
     disp.image(image)
     disp.display()
     
+def affIsLoading():
+ 
+    draw = ImageDraw.Draw(image)
+    draw.rectangle((0,0,width,height), outline=0, fill=255)
+    draw.text((10,28),"LOADING ...",  font=font, fill=0)
+    disp.image(image)
+    disp.display()
+    
 
 def affMainMenu(inventory):
     
@@ -92,7 +100,7 @@ def affMainMenu(inventory):
     draw.rectangle((0,0,34,12), outline=0, fill=255)
     
     if recOn==True:
-        draw.rectangle((117,0,127,12), outline=0, fill=255)
+        draw.ellipse((117,2,125,10), outline=0, fill=255)
 
 
     #font = ImageFont.load_default()

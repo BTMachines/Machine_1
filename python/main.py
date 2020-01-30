@@ -1,8 +1,9 @@
 from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import BlockingOSCUDPServer
+
+from osc_receive import triCom
 from osc_send import *
 from commandes import *
-from osc_receive import triCom
 from list_repository import *
 from oled.affichage import *
 

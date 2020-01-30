@@ -1,3 +1,4 @@
+#from osc_send import sendRecDate,sendRecOff
 from osc_send import *
 import datetime
 import pickle
@@ -31,7 +32,8 @@ def loadSet():
     with open(name,'rb') as fichier:
         mon_depickler=pickle.Unpickler(fichier)
         recupSave=mon_depickler.load()
-    return recupSave
+    myload =updateLoad(recupSave)
+    return myload
 
     
 def tri_load(arg):
@@ -101,14 +103,23 @@ def askRec():
         sendRecOff()
         return False
         
-def findKitId(rackId,kitName):
-    global inventaire
+    
+def updateLoad(inventory):
     kitFolders=listRepo()
+    updateInventory=inventory
     i=0
-    myId=0
-    while i<len(kitFolders):
-        if kitName==kitFolders[i]:
-            myId=i
-            inventaire["lastKit"][rackId]=myId
+    while i<len(updateInventory["lastKit"]):
+        j=0
+        while j<len(kitFolders):
+            if updateInventory["lastKitName"][i]==kitFolders[j]:
+                updateInventory["lastKitName"][i]=j
+            j+=1
         i+=1
-    return myId
+    updateInventory["lastIdMenu"]=0
+    updateInventory["lastIdInstru"]=1
+    updateInventory["lastIdRack"]=1
+    updateInventory["lastIdPas"]=0
+    updateInventory["lastPas"]=0
+    
+    return(updateInventory)
+

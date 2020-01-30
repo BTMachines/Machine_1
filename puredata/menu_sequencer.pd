@@ -1,4 +1,4 @@
-#N canvas 496 154 892 693 10;
+#N canvas 495 154 892 693 10;
 #X obj 216 246 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 216 326 +;
@@ -23,7 +23,7 @@
 #X msg 330 463 0;
 #X obj 308 190 route 1 2 3 4 15 16 11 12 7 8 5 6 13 14 9 10;
 #X obj 330 588 send resetPas;
-#X obj 216 506 send idInstru;
+#X obj 217 623 send idInstru;
 #X obj 384 522 send idPas;
 #X obj 616 406 send velo;
 #X obj 262 140 send idM;
@@ -40,6 +40,8 @@
 -1 -1;
 #X obj 330 553 delay 1;
 #X floatatom 216 486 5 0 0 0 - - -, f 5;
+#X obj 217 588 f;
+#X obj 533 571 receive loadIdInstru;
 #X connect 0 0 10 0;
 #X connect 1 0 9 0;
 #X connect 1 0 14 0;
@@ -89,7 +91,9 @@
 #X connect 32 0 31 0;
 #X connect 33 0 4 0;
 #X connect 36 0 22 0;
-#X connect 37 0 23 0;
 #X connect 37 0 32 0;
 #X connect 37 0 31 0;
-#X connect 37 0 10 1;
+#X connect 37 0 38 0;
+#X connect 38 0 10 1;
+#X connect 38 0 23 0;
+#X connect 39 0 38 0;

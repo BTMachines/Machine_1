@@ -1,6 +1,7 @@
 from osc_send import *
 from commandes import *
 from list_repository import *
+from oled.affichage import affIsLoading
 
 #from main import *
 
@@ -17,6 +18,7 @@ def triCom(inventory,address, *args):
 	if(address=="/validSave"):
 		inventaire=saveSet()
 	if(address=="/validLoad"):
+		affIsLoading()
 		tempInventaire=loadSet()
 		inventaire=setReload(tempInventaire)
 	if(address=="/velo"):
