@@ -52,9 +52,10 @@ def affSaveMenu(inventory):
     
     name=inventory["saveName"]
     draw = ImageDraw.Draw(image)
-    draw.rectangle((0,0,width,height), outline=0, fill=255)
-    draw.text((10,10),"save menu",  font=font, fill=0)
-    draw.text((10,30),"name:"+name,  font=font, fill=0)
+    draw.rectangle((0,0,width,height), outline=0, fill=0)
+    draw.text((10,10),"SAVE",  font=font, fill=255)
+    draw.text((10,25),"press edit to save",  font=font, fill=255)
+    draw.text((10,40),"name:"+name,  font=font, fill=255)
     disp.image(image)
     disp.display()
     
@@ -65,9 +66,10 @@ def affLoadMenu(inventory):
     name=fileSaves[inventory["lastLoadId"]]
     print("name :",name)
     draw = ImageDraw.Draw(image)
-    draw.rectangle((0,0,width,height), outline=0, fill=255)
-    draw.text((10,10),"load menu",  font=font, fill=0)
-    draw.text((10,30),"name:"+name,  font=font, fill=0)
+    draw.rectangle((0,0,width,height), outline=0, fill=0)
+    draw.text((10,10),"lOAD",  font=font, fill=255)
+    draw.text((10,25),"scroll and load set",  font=font, fill=255)
+    draw.text((10,40),name,  font=font, fill=255)
     disp.image(image)
     disp.display()
     
