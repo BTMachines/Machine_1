@@ -3,7 +3,7 @@ import time
 
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_SSD1306
-from analyse import *
+from osc_send import *
 from list_repository import *
 
 from PIL import Image

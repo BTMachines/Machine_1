@@ -1,6 +1,7 @@
 from pythonosc import osc_message_builder
 from pythonosc import udp_client
 from list_repository import *
+from commandes import findKitId
 
 client = udp_client.UDPClient('localhost', 12000)
 
@@ -87,6 +88,7 @@ def analFiles(idRack,idFolder):
     
 def setReload(inventory):
     addr="/myload"
+    loadInventaire=inventory
     for cle,valeur in inventory.items():
         #print(cle,type(valeur))
         if type(valeur)==int or type(valeur)==float:
@@ -110,14 +112,23 @@ def setReload(inventory):
             i=0
             while i<len(valeur):
                 print (cle,i,type(valeur[i]))
-
-                if type(valeur[i])==int or type(valeur[i])==float:
+                if cle=="lastKitName":
+                    loadInventaire["lastKit"][i]=findKitId(i,valeur[i])
                     msg = osc_message_builder.OscMessageBuilder(address=addr)
-                    msg.add_arg(cle)
+                    msg.add_arg("lastKit")
                     msg.add_arg(i)
-                    msg.add_arg(valeur[i])
+                    msg.add_arg(findKitId(i,valeur[i]))
                     msg = msg.build()
                     client.send(msg)
+                    
+                elif type(valeur[i])==int or type(valeur[i])==float:
+                    if cle !="lastKit":
+                        msg = osc_message_builder.OscMessageBuilder(address=addr)
+                        msg.add_arg(cle)
+                        msg.add_arg(i)
+                        msg.add_arg(valeur[i])
+                        msg = msg.build()
+                        client.send(msg)
                 elif type(valeur[i])==bool:
                     msg = osc_message_builder.OscMessageBuilder(address=addr)
                     msg.add_arg(cle)
@@ -170,4 +181,6 @@ def setReload(inventory):
 
                         j+=1
                 i+=1
+    
+    return loadInventaire
 

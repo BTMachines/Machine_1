@@ -1,5 +1,7 @@
-from analyse import *
+from osc_send import *
 from commandes import *
+from list_repository import *
+
 #from main import *
 
 	
@@ -11,11 +13,12 @@ def triCom(inventory,address, *args):
 	idRack=inventaire["lastIdRack"]-1
 	idInstru=inventaire["lastIdInstru"]-1
 	idPas=inventaire["lastIdPas"]
+	
 	if(address=="/validSave"):
 		inventaire=saveSet()
 	if(address=="/validLoad"):
-		inventaire=loadSet()
-		setReload(inventaire)
+		tempInventaire=loadSet()
+		inventaire=setReload(tempInventaire)
 	if(address=="/velo"):
 		inventaire=tri_velo(idRack,idInstru,idPas,args)
 	if(address=="/muteId"):
@@ -58,13 +61,16 @@ def triCom(inventory,address, *args):
 		inventaire["lastLoadId"]=round(args[0])
 	if(address=="/askFiles"):
 		inventaire["lastKit"][idRack]=round(args[0])
+		myRepo=listRepo()
+		inventaire["lastKitName"][idRack]=myRepo[round(args[0])]
+		print(inventaire["lastKitName"])
 		analFiles(idRack+1,inventaire["lastKit"][idRack])
 	if(address=="/askFolders"):
 		analFolders()
 	if(address=="/askSaves"):
 		analSaves()
 	if(address=="/askRec"):
-		inventaire["recIsOn"]=askRec();
+		inventaire["recIsOn"]=askRec()
 		print(inventaire["recIsOn"])
-	cmdReceiveInventory(inventaire);
+	cmdReceiveInventory(inventaire)
 	return(inventaire)

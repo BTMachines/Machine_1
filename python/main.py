@@ -1,8 +1,9 @@
 from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import BlockingOSCUDPServer
-from analyse import *
+from osc_send import *
 from commandes import *
-from tricom import *
+from osc_receive import triCom
+from list_repository import *
 from oled.affichage import *
 
 
@@ -20,6 +21,7 @@ inventaire={
     "nbRack":4,
     "lastMasterVol":0,
     "lastKit":[],
+    "lastKitName":[],
     "lastLoadId":0,
     "mode":0,
     "list_vol":[],
@@ -36,9 +38,9 @@ def updateInventaire(inventory):
     inventaire=inventory
     
 
-
 def initParams():
     global inventaire
+    myRepo=listRepo();
     j=0
     i=0
     h=0
@@ -52,6 +54,7 @@ def initParams():
             inventaire["list_velos"].append([])
             inventaire["list_mesure"].append([])
             inventaire["lastKit"].append(0)
+            inventaire["lastKitName"].append(myRepo[0])#si il n'y a pas de kit ça plante
             inventaire["list_rack_mute"].append(False)
             inventaire["master_rack"].append(50)
             while i<inventaire["nbPlayers"]:
