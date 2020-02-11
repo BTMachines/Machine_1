@@ -49,7 +49,6 @@ def initParams():
     for cle, valeur in inventaire.items():
 
         while j<inventaire["nbRack"]:
-            analFiles(j+1,0)
             inventaire["list_vol"].append([])
             inventaire["list_mute"].append([])
             inventaire["list_velos"].append([])

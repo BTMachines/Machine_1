@@ -10,6 +10,16 @@ inventaire={}
 def cmdReceiveInventory(inventory):
     global inventaire
     inventaire=inventory
+    
+
+
+def initFiles():
+    print("initFiles")
+    global inventaire
+    i=1
+    while i< len(inventaire["lastKit"])+1:
+        analFiles(i,0)
+        i+=1
 
 def saveSet():
     global inventaire

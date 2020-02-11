@@ -1,4 +1,4 @@
-#N canvas 2 71 1009 697 10;
+#N canvas 2 71 1265 953 10;
 #X obj 392 552 readsf~ 2 44100;
 #X obj 391 735 outlet~;
 #X obj 444 766 outlet~;
@@ -48,13 +48,14 @@
 #X obj 875 644 *~;
 #X obj 572 490 loadbang;
 #X obj 572 513 0.5;
-#X obj 728 199 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 728 199 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 779 199 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 779 199 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 831 182 loadbang;
 #X obj 689 231 spigot;
 #X obj 740 231 spigot;
+#X obj 1026 464 print audioSample \$1 \$2;
 #X connect 0 0 40 0;
 #X connect 0 1 41 0;
 #X connect 3 0 2 0;

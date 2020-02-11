@@ -65,8 +65,10 @@ def triCom(inventory,address, *args):
 		inventaire["lastKit"][idRack]=round(args[0])
 		myRepo=listRepo()
 		inventaire["lastKitName"][idRack]=myRepo[round(args[0])]
-		print(inventaire["lastKitName"])
+		print("lastKitName", inventaire["lastKitName"][idRack])
 		analFiles(idRack+1,inventaire["lastKit"][idRack])
+	if(address=="/initFiles"):
+		initFiles()
 	if(address=="/askFolders"):
 		analFolders()
 	if(address=="/askSaves"):

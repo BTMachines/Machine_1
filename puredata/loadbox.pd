@@ -1,4 +1,4 @@
-#N canvas 188 182 674 462 10;
+#N canvas 186 182 674 462 10;
 #X obj 73 48 receive myload;
 #X obj 74 160 send loadRackMute;
 #X obj 98 182 send loadMute;
@@ -14,7 +14,6 @@ lastIdPas list_velos recIsOn mode lastKit lastMasterVol lastIdMenu
 lastIdInstru lastIdRack lastLoadId isPlaying list_vol list_mesure,
 f 64;
 #X obj 495 211 mesureReload;
-#X obj 296 353 print lastKit;
 #X obj 197 384 send resetPas;
 #X obj 345 308 send loadIdM;
 #X obj 395 407 send loadIdRack;
@@ -25,13 +24,12 @@ f 64;
 #X connect 10 1 2 0;
 #X connect 10 2 3 0;
 #X connect 10 4 6 0;
-#X connect 10 5 13 0;
+#X connect 10 5 12 0;
 #X connect 10 6 4 0;
-#X connect 10 9 12 0;
 #X connect 10 10 7 0;
-#X connect 10 11 14 0;
-#X connect 10 12 16 0;
-#X connect 10 13 15 0;
+#X connect 10 11 13 0;
+#X connect 10 12 15 0;
+#X connect 10 13 14 0;
 #X connect 10 15 5 0;
 #X connect 10 16 9 0;
 #X connect 10 17 11 0;

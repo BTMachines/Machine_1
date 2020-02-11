@@ -63,10 +63,10 @@ def analFolders():
 
 
 def analFiles(idRack,idFolder):
-    name=folders[idFolder]
-    filesNames=listFiles(name)
+    folderName=folders[idFolder]
+    filesNames=listFiles(folderName)
     i=0
-    #print("name:",name)
+    print("folderName:",folderName)
 
     while i<len(filesNames):
         
@@ -77,9 +77,10 @@ def analFiles(idRack,idFolder):
         finalFilesNames[idRack-1][numId-1]=nakedName[0]
         addr="/fileName"
         msg = osc_message_builder.OscMessageBuilder(address=addr)
+        msg.add_arg(idRack)
         msg.add_arg(numId)
         msg.add_arg("open")
-        msg.add_arg("/home/pi/Bureau/BTMachines_git/Samples/"+name+"/"+filesNames[i])
+        msg.add_arg("/home/pi/Bureau/BTMachines_git/Samples/"+folderName+"/"+filesNames[i])
         msg = msg.build()
         client.send(msg)
         i+=1
@@ -90,6 +91,11 @@ def setReload(inventory):
     loadInventaire=inventory
     for cle,valeur in inventory.items():
         #print(cle,type(valeur))
+        if cle == "lastKit":
+            i=0
+            while i< len(valeur):
+                analFiles(i+1,valeur[i])
+                i+=1
         if type(valeur)==int or type(valeur)==float:
             #print (cle, valeur)
             msg = osc_message_builder.OscMessageBuilder(address=addr)
