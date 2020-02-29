@@ -1,4 +1,4 @@
-#N canvas 75 417 788 443 10;
+#N canvas 70 417 788 443 10;
 #X obj 259 252 bpm_set;
 #X msg 259 160 1;
 #X msg 298 207 0;
@@ -50,7 +50,6 @@
 #X connect 18 0 21 0;
 #X connect 18 0 20 0;
 #X connect 21 0 19 0;
-#X connect 22 0 19 0;
 #X connect 23 0 1 0;
 #X connect 23 1 2 0;
 #X connect 23 2 3 0;

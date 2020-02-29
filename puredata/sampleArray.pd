@@ -1,0 +1,5 @@
+#N canvas 61 718 371 300 10;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array sample_\$1_\$2 85088 float 2;
+#X coords 0 1 85088 -1 200 140 1 0 0;
+#X restore 76 94 graph;

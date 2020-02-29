@@ -79,7 +79,7 @@ def analFiles(idRack,idFolder):
         msg = osc_message_builder.OscMessageBuilder(address=addr)
         msg.add_arg(idRack)
         msg.add_arg(numId)
-        msg.add_arg("open")
+        #msg.add_arg("open")
         msg.add_arg("/home/pi/Bureau/BTMachines_git/Samples/"+folderName+"/"+filesNames[i])
         msg = msg.build()
         client.send(msg)
