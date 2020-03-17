@@ -10,7 +10,7 @@ finalFilesNames=[];
 
 i=0
 j=0
-while j<4:
+while j<8:
     finalFilesNames.append([])
     while i<12:
         finalFilesNames[j].append("x")
@@ -176,5 +176,9 @@ def setReload(inventory):
                         j+=1
                 i+=1
     
+    msg = osc_message_builder.OscMessageBuilder(address="/dspOn")
+    msg.add_arg(0)
+    msg = msg.build()
+    client.send(msg)
     return loadInventaire
 

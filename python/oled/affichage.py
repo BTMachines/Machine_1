@@ -123,9 +123,9 @@ def affRackMenu(inventory):
         
     draw = ImageDraw.Draw(image)
     draw.rectangle((0,0,width,height), outline=0, fill=0)   
-    draw.text((0,0),"Racks: "+str(idRack+1),  font=font, fill=255)
-    draw.text((0,37),"vol: "+str(vol)+"%",  font=font, fill=255)
-    draw.text((0,55),"kit: "+kitName,  font=font, fill=255)
+    draw.text((0,0),"Rack: "+str(idRack+1),  font=font, fill=255)
+    draw.text((64,0),"vol: "+str(vol)+"%",  font=font, fill=255)
+    draw.text((0,50),"kit: "+kitName,  font=font, fill=255)
 
     if mode==1:
         draw.rectangle((107,0,117,10), outline=0, fill=255)
@@ -134,7 +134,7 @@ def affRackMenu(inventory):
     j=0
     i=0
     idCount=0
-    while j<1:
+    while j<2:
         while i<4: 
             draw.text((i*carre2_width,marge_top+j*carre2_height-1),str(idCount+1),  font=font, fill=255)
 

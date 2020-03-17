@@ -19,7 +19,7 @@ inventaire={
     "lastBpm":120,
     "isPlaying":0,
     "nbPlayers":12,
-    "nbRack":4,
+    "nbRack":8,
     "lastMasterVol":0,
     "lastKit":[],
     "lastKitName":[],

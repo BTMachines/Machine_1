@@ -24,7 +24,7 @@ def initFiles():
 def saveSet():
     global inventaire
     date = datetime.datetime.now()
-    saveName=inventaire["saveName"]=str(date.hour)+","+str(date.minute)+","+str(date.second)+'-'+str(date.day)+","+str(date.month)+","+str(date.year)[2:]
+    saveName=inventaire["saveName"]=str(date.day)+"-"+str(date.month)+"_"+str(date.hour)+";"+str(date.minute)
     print(saveName)
     name=inventaire["chemin"]+saveName
     with open(name,'wb') as fichier:
